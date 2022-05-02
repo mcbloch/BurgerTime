@@ -9,12 +9,13 @@
 
 namespace dae
 {
-	enum Messages
+	enum MessageType
 	{
 		PlaySound,
 		StopSound,
 		PauseSounds,
-		StopSounds
+		StopSounds,
+		StopAllSounds
 	};
 
 	struct MessageData
@@ -25,14 +26,14 @@ namespace dae
 	class Message
 	{
 	public:
-		Message(const int id, const MessageData data) : m_Id(id), m_Data(std::move(data))
+		Message(const MessageType id, const MessageData data) : m_Id(id), m_Data(std::move(data))
 		{
 		}
 
-		int         GetID() { return m_Id; }
+		MessageType GetID() { return m_Id; }
 		MessageData GetData() { return m_Data; }
 	private:
-		int         m_Id;
+		MessageType m_Id;
 		MessageData m_Data{};
 	};
 
@@ -61,11 +62,15 @@ namespace dae
 					break;
 				case PauseSounds:
 					Locator::GetAudio().TogglePause();
+					break;
+				case StopAllSounds:
+					Locator::GetAudio().StopAllSounds();
+					break;
 				}
 			}
 		}
 
-		void SendEvent(const int eventId, const MessageData data)
+		void SendEvent(const MessageType eventId, const MessageData data)
 		{
 			queue.Push(new Message(eventId, data));
 		}

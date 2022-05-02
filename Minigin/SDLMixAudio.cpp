@@ -113,7 +113,17 @@ public:
 	static void StopSound(const int soundID)
 	{
 		Mix_Chunk* c = Mix_GetChunk(soundID);
+
+		// halt playback on all channels
+		Mix_HaltChannel(soundID);
+
 		Mix_FreeChunk(c);
+	}
+
+	static void StopAllSounds()
+	{
+		// halt playback on all channels
+		Mix_HaltChannel(-1);
 	}
 };
 
@@ -138,12 +148,11 @@ void dae::SDLMixAudio::PlaySound(const int soundID)
 void dae::SDLMixAudio::StopSound(const int soundID)
 {
 	pimpl->StopSound(soundID);
-	throw std::logic_error("Not implemented");
 }
 
 void dae::SDLMixAudio::StopAllSounds()
 {
-	throw std::logic_error("Not implemented");
+	pimpl->StopAllSounds();
 }
 
 /**

@@ -10,6 +10,22 @@
 #include "Texture2D.h"
 #include "GameObject.h"
 
+dae::SpriteMapTextureComponent::SpriteMapTextureComponent(
+	const std::shared_ptr<GameObject> go, const std::string& filename,
+	int                               startX, int            startY, int width, int height, float scale)
+	: Component(go), m_Texture(ResourceManager::GetInstance().LoadTexture(filename)),
+	  x(startX), y(startY), w(width), h(height), scale(scale)
+{
+}
+
+void dae::SpriteMapTextureComponent::Render(float)
+{
+	const auto& pos = GetEntity()->GetComponent<LocationComponent>()->GetTransform().GetPosition();
+	Renderer::GetInstance().RenderTexture(
+		*m_Texture, x, y, w, h,
+		pos.x, pos.y, w * scale, h * scale);
+}
+
 dae::TextureComponent::TextureComponent(std::shared_ptr<GameObject> go, const std::string& filename)
 	: Component(go), m_Texture(ResourceManager::GetInstance().LoadTexture(filename))
 {

@@ -10,6 +10,30 @@ namespace dae
 	class GameObject;
 	class Texture2D;
 
+	class SpriteMapTextureComponent : public Component
+	{
+	public:
+		SpriteMapTextureComponent() = default;
+		SpriteMapTextureComponent(
+			std::shared_ptr<GameObject> go, const std::string& filename,
+			int                         startX, int            startY, int width, int height,
+			float                       scale);
+
+		void Update(float) override
+		{
+		}
+
+		void Render(float dt) override;
+
+	private:
+		std::shared_ptr<Texture2D> m_Texture{};
+		int                        x;
+		int                        y;
+		int                        w;
+		int                        h;
+		float                      scale;
+	};
+
 	class TextureComponent : public Component
 	{
 	public:

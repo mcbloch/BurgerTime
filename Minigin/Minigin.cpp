@@ -126,7 +126,7 @@ void dae::Minigin::Run()
 	Locator::Provide(new SDLMixAudio());
 	enableAudioLogging();
 
-	AudioEventQueue::GetInstance().SendEvent(PlaySound, { PINK_PANTHER });
+	AudioEventQueue::GetInstance().SendEvent(PlaySound, {BT_MUSIC});
 
 	LoadGame();
 
@@ -136,25 +136,76 @@ void dae::Minigin::Run()
 		auto& input        = InputManager::GetInstance();
 		auto& eventQueue   = EventQueue::GetInstance();
 
+		// input.BindButtonCommand({ControllerButton::ButtonA, ButtonState::Down}, std::make_unique<JumpCommand>());
+		// input.BindButtonCommand({ControllerButton::ButtonB, ButtonState::Down}, std::make_unique<DuckCommand>());
+		// input.BindButtonCommand({ControllerButton::ButtonX, ButtonState::Pressed}, std::make_unique<FireCommand>());
+		// input.BindButtonCommand({ControllerButton::ButtonY, ButtonState::Up}, std::make_unique<WheezeCommand>());
+
+		// input.BindAnalogCommand(ControllerAnalog::TriggerRight, std::make_unique<BrakeCommand>());
+
+
 		bool doContinue = true;
 
-		float t  = 0.f;
-		float dt = MsPerFrame / 1000.f;
+		float           t  = 0.f;
+		constexpr float dt = MsPerFrame / 1000.f;
 
 		auto  currentTime = std::chrono::high_resolution_clock::now();
 		float accumulator = 0.f;
 
+		std::cout << "Space to pause audio" << std::endl;
+		std::cout << "P to play audio" << std::endl;
+		std::cout << "S to stop audio" << std::endl;
+
 		while (doContinue)
 		{
-			auto  newTime   = std::chrono::high_resolution_clock::now();
-			float frameTime = std::chrono::duration<float>(newTime - currentTime).count();
-			currentTime     = newTime;
+			auto        newTime   = std::chrono::high_resolution_clock::now();
+			const float frameTime = std::chrono::duration<float>(newTime - currentTime).count();
+			currentTime           = newTime;
 
 			accumulator += frameTime;
 
 			// Add a catchup in fixed steps
 			// lag += deltaTime;
-			doContinue = input.ProcessInput();
+			input.ProcessInput();
+			input.HandleInput();
+
+			if (input.HasState(ControllerButton::Back, ButtonState::Down))
+			{
+				std::cout << "Button Back has been pressed" << std::endl;
+				doContinue = false;
+				break;
+			}
+
+			// TODO Move this back into the input manager
+
+			SDL_Event e;
+			while (SDL_PollEvent(&e))
+			{
+				if (e.type == SDL_QUIT)
+				{
+					doContinue = false;
+				}
+				if (e.type == SDL_KEYDOWN)
+				{
+					if ((e.key.keysym.sym == SDLK_SPACE))
+					{
+						AudioEventQueue::GetInstance().SendEvent(PauseSounds, {});
+					}
+					else if ((e.key.keysym.sym == SDLK_p))
+					{
+						AudioEventQueue::GetInstance().SendEvent(PlaySound, {BT_MUSIC});
+					}
+					else if ((e.key.keysym.sym == SDLK_s))
+					{
+						AudioEventQueue::GetInstance().SendEvent(StopAllSounds, {BT_MUSIC});
+					}
+				}
+				// Process event for ImGUI
+				ImGui_ImplSDL2_ProcessEvent(&e);
+			}
+
+			// End TODO
+
 			eventQueue.ProcessQueue();
 			/*SteamAPI_RunCallbacks();*/
 

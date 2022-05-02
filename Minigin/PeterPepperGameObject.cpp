@@ -11,6 +11,15 @@ dae::PeterPepperGameObject::PeterPepperGameObject() : m_GameObject(std::make_sha
 {
 	m_GameObject->AddComponent(new LocationComponent(m_GameObject, 80, 40));
 	m_GameObject->AddComponent(new PlayerStatsComponent(m_GameObject, 5));
+	m_GameObject->AddComponent(new SpriteMapTextureComponent(
+		m_GameObject, "sprites/spritesheet.png",
+		0, 0, 16, 16, 2.f));
+
+	const auto& input = InputManager::GetInstance();
+	input.BindButtonCommand({ControllerButton::DPadLeft, ButtonState::Down}, std::make_unique<MoveLeftCommand>());
+	input.BindButtonCommand({ControllerButton::DPadRight, ButtonState::Down}, std::make_unique<MoveRightCommand>());
+	input.BindButtonCommand({ControllerButton::DPadUp, ButtonState::Down}, std::make_unique<MoveUpCommand>());
+	input.BindButtonCommand({ControllerButton::DPadDown, ButtonState::Down}, std::make_unique<MoveDownCommand>());
 }
 
 void dae::PeterPepperGameObject::InitHandlers()
