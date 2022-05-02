@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="imgui">
+      <UniqueIdentifier>{19db6d45-5b20-429d-8f33-f6c0a924fd79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="imgui-plot">
+      <UniqueIdentifier>{7ffe9941-33ab-4fde-9ddc-c45fc27e29d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects">
+      <UniqueIdentifier>{fee3ccf1-289f-4b0e-9e8c-4d7d0cf561c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects">
+      <UniqueIdentifier>{6077de93-4425-49a1-93d7-1e8d3a7296e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components">
+      <UniqueIdentifier>{bbc24803-9073-4725-8d09-d01836dd1baf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\EventSystem">
+      <UniqueIdentifier>{6c3e9ba9-2664-4d03-bf5d-f03ce8c8a42e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Managers">
+      <UniqueIdentifier>{4f500dbb-b1a3-407c-98d8-8691a52cd50a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="steamapi">
+      <UniqueIdentifier>{b87f4be9-5fd8-46bc-b300-97ffdef763a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Audio">
+      <UniqueIdentifier>{41259970-aa2c-4f26-9871-69cd5e412dca}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="MiniginPCH.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Singleton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Font.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Minigin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-1.86\imconfig.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-1.86\imgui.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-1.86\imgui_internal.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-1.86\imstb_rectpack.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-1.86\imstb_textedit.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-1.86\imstb_truetype.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-1.86\backends\imgui_impl_opengl2.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-1.86\backends\imgui_impl_sdl.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\imgui-plot\include\imgui_plot.h">
+      <Filter>imgui-plot</Filter>
+    </ClInclude>
+    <ClInclude Include="PeterPepperGameObject.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphicsComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="LocationComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Event.h">
+      <Filter>Header Files\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandler.h">
+      <Filter>Header Files\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="EventQueue.h">
+      <Filter>Header Files\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="HUD.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerStatsComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="EventHandlerComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamapplist.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamapps.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamappticket.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamclient.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamcontroller.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamfriends.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamgamecoordinator.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamgameserver.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamgameserverstats.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamhtmlsurface.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamhttp.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteaminput.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteaminventory.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteammatchmaking.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteammusic.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteammusicremote.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamnetworking.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamnetworkingmessages.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamnetworkingsockets.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamnetworkingutils.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamparentalsettings.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamps3overlayrenderer.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamremoteplay.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamremotestorage.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamscreenshots.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamugc.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamuser.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamuserstats.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamutils.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamvideo.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\matchmakingtypes.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\steam_api.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\steam_api_common.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\steam_api_flat.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\steam_api_internal.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\steam_gameserver.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\steamclientpublic.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\steamencryptedappticket.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\steamhttpenums.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\steamnetworkingfakeip.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\steamnetworkingtypes.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\steamps3params.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\steamtypes.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3rdParty\steamworks\public\steam\steamuniverse.h">
+      <Filter>steamapi</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheExercise.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Audio.h">
+      <Filter>Header Files\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLMixAudio.h">
+      <Filter>Header Files\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Locator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NullAudio.h">
+      <Filter>Header Files\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="LoggedAudio.h">
+      <Filter>Header Files\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioEventQueue.h">
+      <Filter>Header Files\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="ConcurrentQueue.h">
+      <Filter>Header Files\Audio</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="MiniginPCH.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Font.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Minigin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphicsComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-1.86\imgui.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-1.86\imgui_demo.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-1.86\imgui_draw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-1.86\imgui_tables.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-1.86\imgui_widgets.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-1.86\backends\imgui_impl_opengl2.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-1.86\backends\imgui_impl_sdl.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\3rdParty\imgui-plot\src\imgui_plot.cpp">
+      <Filter>imgui-plot</Filter>
+    </ClCompile>
+    <ClCompile Include="LocationComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PeterPepperGameObject.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="EventQueue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Event.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EventHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="HUD.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerStatsComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EventHandlerComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLMixAudio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\3rdParty\steamworks\public\steam\steam_api.json">
+      <Filter>steamapi</Filter>
+    </None>
+  </ItemGroup>
+</Project>
