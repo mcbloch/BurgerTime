@@ -1,9 +1,10 @@
 #pragma once
+#include "GameObject.h"
 
 class Command
 {
 public:
-	Command()          = default;
+	explicit Command(std::shared_ptr<dae::GameObject> actor);
 	virtual ~Command() = default;
 
 	Command(const Command& other)                = delete;
@@ -12,30 +13,44 @@ public:
 	Command& operator=(Command&& other) noexcept = delete;
 
 	virtual void Execute() = 0;
+
+protected:
+	std::shared_ptr<dae::GameObject> mActor;
+};
+
+class MusicPauseCommand final : public Command
+{
+public:
+	using Command::Command;
+	void Execute() override;
 };
 
 
 class MoveUpCommand final : public Command
 {
 public:
+	using Command::Command;
 	void Execute() override;
 };
 
 class MoveRightCommand final : public Command
 {
 public:
+	using Command::Command;
 	void Execute() override;
 };
 
 class MoveLeftCommand final : public Command
 {
 public:
+	using Command::Command;
 	void Execute() override;
 };
 
 class MoveDownCommand final : public Command
 {
 public:
+	using Command::Command;
 	void Execute() override;
 };
 

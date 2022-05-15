@@ -29,9 +29,13 @@ void PrintSDLVersion()
 	SDL_VERSION(&compiled);
 	SDL_GetVersion(&linked);
 	printf("We compiled against SDL version %d.%d.%d ...\n",
-	       compiled.major, compiled.minor, compiled.patch);
+	       compiled.major,
+	       compiled.minor,
+	       compiled.patch);
 	printf("We are linking against SDL version %d.%d.%d.\n",
-	       linked.major, linked.minor, linked.patch);
+	       linked.major,
+	       linked.minor,
+	       linked.patch);
 }
 
 void dae::Minigin::Initialize()
@@ -85,7 +89,8 @@ void dae::Minigin::LoadGame()
 
 	auto go = std::make_shared<GameObject>();
 	go->AddComponent(new TextComponent(
-		go, "Programming 4 Assignment",
+		go,
+		"Programming 4 Assignment",
 		ResourceManager::GetInstance().LoadFont("Lingua.otf", 36)));
 	go->AddComponent(new LocationComponent(go, 80, 40));
 	scene.Add(go);
@@ -136,13 +141,11 @@ void dae::Minigin::Run()
 		auto& input        = InputManager::GetInstance();
 		auto& eventQueue   = EventQueue::GetInstance();
 
-		// input.BindButtonCommand({ControllerButton::ButtonA, ButtonState::Down}, std::make_unique<JumpCommand>());
-		// input.BindButtonCommand({ControllerButton::ButtonB, ButtonState::Down}, std::make_unique<DuckCommand>());
-		// input.BindButtonCommand({ControllerButton::ButtonX, ButtonState::Pressed}, std::make_unique<FireCommand>());
-		// input.BindButtonCommand({ControllerButton::ButtonY, ButtonState::Up}, std::make_unique<WheezeCommand>());
-
-		// input.BindAnalogCommand(ControllerAnalog::TriggerRight, std::make_unique<BrakeCommand>());
-
+		input.BindKeyCommand({SDL_SCANCODE_SPACE, ButtonState::Down}, std::make_unique<MusicPauseCommand>(nullptr_t()));
+		// AudioEventQueue::GetInstance().SendEvent(PlaySound, {BT_MUSIC});
+		// input.BindKeyCommand({SDL_SCANCODE_P, ButtonState::Down}, std::make_unique<MusicPauseCommand>(nullptr_t()));
+		// AudioEventQueue::GetInstance().SendEvent(StopAllSounds, {BT_MUSIC});
+		// input.BindKeyCommand({SDL_SCANCODE_S, ButtonState::Down}, std::make_unique<MusicPauseCommand>(nullptr_t()));
 
 		bool doContinue = true;
 
@@ -167,7 +170,6 @@ void dae::Minigin::Run()
 			// Add a catchup in fixed steps
 			// lag += deltaTime;
 			input.ProcessInput();
-			input.HandleInput();
 
 			if (input.HasState(ControllerButton::Back, ButtonState::Down))
 			{
@@ -185,29 +187,22 @@ void dae::Minigin::Run()
 				{
 					doContinue = false;
 				}
-				if (e.type == SDL_KEYDOWN)
+				if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP)
 				{
-					if ((e.key.keysym.sym == SDLK_SPACE))
-					{
-						AudioEventQueue::GetInstance().SendEvent(PauseSounds, {});
-					}
-					else if ((e.key.keysym.sym == SDLK_p))
-					{
-						AudioEventQueue::GetInstance().SendEvent(PlaySound, {BT_MUSIC});
-					}
-					else if ((e.key.keysym.sym == SDLK_s))
-					{
-						AudioEventQueue::GetInstance().SendEvent(StopAllSounds, {BT_MUSIC});
-					}
+					input.ProcessSDLKeyEvent(e);
 				}
 				// Process event for ImGUI
 				ImGui_ImplSDL2_ProcessEvent(&e);
 			}
+			// Update the current keyboard mappings
+			SDL_PumpEvents();
+
+			input.HandleInput();
+
 
 			// End TODO
 
 			eventQueue.ProcessQueue();
-			/*SteamAPI_RunCallbacks();*/
 
 			while (accumulator >= dt)
 			{

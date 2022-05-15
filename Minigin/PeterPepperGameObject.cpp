@@ -16,10 +16,16 @@ dae::PeterPepperGameObject::PeterPepperGameObject() : m_GameObject(std::make_sha
 		0, 0, 16, 16, 2.f));
 
 	const auto& input = InputManager::GetInstance();
-	input.BindButtonCommand({ControllerButton::DPadLeft, ButtonState::Down}, std::make_unique<MoveLeftCommand>());
-	input.BindButtonCommand({ControllerButton::DPadRight, ButtonState::Down}, std::make_unique<MoveRightCommand>());
-	input.BindButtonCommand({ControllerButton::DPadUp, ButtonState::Down}, std::make_unique<MoveUpCommand>());
-	input.BindButtonCommand({ControllerButton::DPadDown, ButtonState::Down}, std::make_unique<MoveDownCommand>());
+
+	input.BindButtonCommand({ControllerButton::DPadLeft, ButtonState::Down}, std::make_unique<MoveLeftCommand>(m_GameObject));
+	input.BindButtonCommand({ControllerButton::DPadRight, ButtonState::Down}, std::make_unique<MoveRightCommand>(m_GameObject));
+	input.BindButtonCommand({ControllerButton::DPadUp, ButtonState::Down}, std::make_unique<MoveUpCommand>(m_GameObject));
+	input.BindButtonCommand({ControllerButton::DPadDown, ButtonState::Down}, std::make_unique<MoveDownCommand>(m_GameObject));
+
+	input.BindKeyCommand({ SDL_SCANCODE_LEFT, ButtonState::Down }, std::make_unique<MoveLeftCommand>(m_GameObject));
+	input.BindKeyCommand({ SDL_SCANCODE_RIGHT, ButtonState::Down }, std::make_unique<MoveRightCommand>(m_GameObject));
+	input.BindKeyCommand({ SDL_SCANCODE_UP, ButtonState::Down }, std::make_unique<MoveUpCommand>(m_GameObject));
+	input.BindKeyCommand({ SDL_SCANCODE_DOWN, ButtonState::Down }, std::make_unique<MoveDownCommand>(m_GameObject));
 }
 
 void dae::PeterPepperGameObject::InitHandlers()

@@ -7,6 +7,13 @@
 
 namespace dae
 {
+	enum class ButtonState
+	{
+		Down,
+		Up,
+		Pressed
+	};
+
 	enum class ControllerButton
 	{
 		DPadUp = 0x0001,
@@ -25,17 +32,10 @@ namespace dae
 		ButtonY = 0x8000,
 	};
 
-	enum class ButtonState
-	{
-		Down,
-		Up,
-		Pressed
-	};
-
 	struct ControllerButtonData
 	{
 		ControllerButton button;
-		ButtonState      state;
+		ButtonState state;
 	};
 
 	enum class ControllerAnalog
@@ -51,9 +51,14 @@ namespace dae
 	struct ControllerAnalogData
 	{
 		ControllerAnalog what;
-		short            value;
+		short value;
 	};
 
+	struct KeyboardKeyData
+	{
+		SDL_Scancode key;
+		ButtonState state;
+	};
 
 	inline bool operator<(const ControllerButtonData& lhs, const ControllerButtonData& rhs)
 	{
@@ -69,6 +74,14 @@ namespace dae
 			std::tie(rhs.what, rhs.value);
 	}
 
+
+	inline bool operator<(const KeyboardKeyData& lhs, const KeyboardKeyData& rhs)
+	{
+		return
+			std::tie(lhs.key, lhs.state) <
+			std::tie(rhs.key, rhs.state);
+	}
+
 	static int ControllerButtonCount = static_cast<int>(ControllerButton::ButtonY) + 1;
 
 	class InputManager final : public Singleton<InputManager>
@@ -80,11 +93,15 @@ namespace dae
 		InputManager();
 		~InputManager();
 
-		bool               ProcessInput() const;
+		void ProcessInput() const;
+		// Should be called after ProcessInput as the former reset the current state
+		void ProcessSDLKeyEvent(SDL_Event e) const;
+
 		[[nodiscard]] bool HasState(ControllerButton button, ButtonState bState) const;
-		void               HandleInput() const;
+		void HandleInput() const;
 
 		void BindButtonCommand(ControllerButtonData, std::unique_ptr<Command>) const;
 		void BindAnalogCommand(ControllerAnalog, std::unique_ptr<AnalogCommand>) const;
+		void BindKeyCommand(KeyboardKeyData, std::unique_ptr<Command>) const;
 	};
 }

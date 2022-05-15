@@ -3,24 +3,47 @@
 
 #include <iostream>
 
+#include "AudioEventQueue.h"
+
+Command::Command(std::shared_ptr<dae::GameObject> actor)
+	: mActor(actor)
+{
+}
+
+void MusicPauseCommand::Execute()
+{
+	dae::AudioEventQueue::GetInstance().SendEvent(dae::PauseSounds, {});
+}
+
+
+constexpr int speed = 10;
+
 void MoveUpCommand::Execute()
 {
-	std::cout << "Move up" << std::endl;
+	const auto locComp = mActor->GetComponent<dae::LocationComponent>();
+	const auto pos = locComp->GetTransform().GetPosition();
+	locComp->SetPosition(pos.x, pos.y - speed);
 }
 
 void MoveRightCommand::Execute()
 {
-	std::cout << "Move right" << std::endl;
+	const auto locComp = mActor->GetComponent<dae::LocationComponent>();
+	const auto pos = locComp->GetTransform().GetPosition();
+	locComp->SetPosition(pos.x + speed, pos.y);
 }
 
 void MoveLeftCommand::Execute()
 {
-	std::cout << "Move left" << std::endl;
+	const auto locComp = mActor->GetComponent<dae::LocationComponent>();
+	const auto pos = locComp->GetTransform().GetPosition();
+	locComp->SetPosition(pos.x - speed, pos.y);
 }
 
 void MoveDownCommand::Execute()
 {
-	std::cout << "Move down" << std::endl;
+	const auto locComp = mActor->GetComponent<dae::LocationComponent>();
+	const auto pos = locComp->GetTransform().GetPosition();
+	locComp->SetPosition(pos.x, pos.y + speed);
 }
 
 // void BrakeCommand::Execute(const short value)

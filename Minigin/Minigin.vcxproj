@@ -279,6 +279,7 @@
     <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="HUD.h" />
     <ClInclude Include="InputManager.h" />
+    <ClInclude Include="LevelManager.h" />
     <ClInclude Include="LocationComponent.h" />
     <ClInclude Include="Locator.h" />
     <ClInclude Include="LoggedAudio.h" />
@@ -364,6 +365,7 @@
     <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="LevelManager.cpp" />
     <ClCompile Include="LocationComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Minigin.cpp" />

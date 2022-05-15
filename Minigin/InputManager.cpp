@@ -21,9 +21,13 @@ class dae::InputManager::InputManagerImpl
 	XINPUT_STATE previousState{};
 	XINPUT_STATE currentState{};
 
-	int mainController           = 0;
-	int buttonsPressedThisFrame  = 0;
+	int mainController = 0;
+	int buttonsPressedThisFrame = 0;
 	int buttonsReleasedThisFrame = 0;
+
+	const Uint8* keysPressed = SDL_GetKeyboardState(nullptr);
+	bool keysPressedThisFrame[SDL_NUM_SCANCODES];
+	bool keysReleasedThisFrame[SDL_NUM_SCANCODES];
 
 	std::vector<short> analogValues{};
 
@@ -31,8 +35,11 @@ class dae::InputManager::InputManagerImpl
 
 	using ControllerButtonCommandMap = std::map<ControllerButtonData, std::unique_ptr<Command>>;
 	using ControllerAnalogCommandMap = std::map<ControllerAnalog, std::unique_ptr<AnalogCommand>>;
+	using KeyboardCommandMap = std::map<KeyboardKeyData, std::unique_ptr<Command>>;
+
 	ControllerButtonCommandMap buttonCommandMapping{};
 	ControllerAnalogCommandMap analogCommandMapping{};
+	KeyboardCommandMap keyboardCommandMap{};
 
 public:
 	InputManagerImpl() :
@@ -53,39 +60,26 @@ public:
 		{
 			command.reset();
 		}
+		for (auto& [keyData, command] : keyboardCommandMap)
+		{
+			command.reset();
+		}
 	}
 
-	/*
-	 * TODO: Separate these. Coop can use different input types for different characters
-	 */
-	bool ProcessInput()
+	void ProcessSDLKeyEvent(const SDL_Event e)
+	{
+		if (e.type == SDL_KEYDOWN)
+			keysPressedThisFrame[e.key.keysym.scancode] = true;
+		else if (e.type == SDL_KEYUP)
+			keysReleasedThisFrame[e.key.keysym.scancode] = true;
+	}
+
+	void ProcessInput()
 	{
 		// Keyboard stuff
-		/*
-		SDL_Event e;
-		while (SDL_PollEvent(&e))
-		{
-			if (e.type == SDL_QUIT)
-			{
-				return false;
-			}
-			if (e.type == SDL_KEYDOWN)
-			{
-				if ((e.key.keysym.sym & SDLK_SPACE) != 0)
-				{
-					Locator::GetAudio().TogglePause();
-				}
-				// if (e.key & SDLK_d)
-				// {
-				// 	EventQueue::SendEvent(BurgerDrop, nullptr);
-				// }
-			}
-			if (e.type == SDL_MOUSEBUTTONDOWN)
-			{
-			}
-			// Process event for ImGUI
-			ImGui_ImplSDL2_ProcessEvent(&e);
-		}*/
+		memset(keysPressedThisFrame, false, SDL_NUM_SCANCODES);
+		memset(keysReleasedThisFrame, false, SDL_NUM_SCANCODES);
+
 
 		// Controller stuff
 
@@ -104,17 +98,17 @@ public:
 		{
 			// Buttons
 			const auto buttonChanges = currentState.Gamepad.wButtons ^ previousState.Gamepad.wButtons;
-			buttonsPressedThisFrame  = buttonChanges & currentState.Gamepad.wButtons;
+			buttonsPressedThisFrame = buttonChanges & currentState.Gamepad.wButtons;
 			buttonsReleasedThisFrame = buttonChanges & (~currentState.Gamepad.wButtons);
 
 			// Sticks
-			analogValues[static_cast<int>(ControllerAnalog::ThumbLeftX)]  = currentState.Gamepad.sThumbLX;
-			analogValues[static_cast<int>(ControllerAnalog::ThumbLeftY)]  = currentState.Gamepad.sThumbLY;
+			analogValues[static_cast<int>(ControllerAnalog::ThumbLeftX)] = currentState.Gamepad.sThumbLX;
+			analogValues[static_cast<int>(ControllerAnalog::ThumbLeftY)] = currentState.Gamepad.sThumbLY;
 			analogValues[static_cast<int>(ControllerAnalog::ThumbRightX)] = currentState.Gamepad.sThumbRX;
 			analogValues[static_cast<int>(ControllerAnalog::ThumbRightY)] = currentState.Gamepad.sThumbRY;
 
 			// Triggers
-			analogValues[static_cast<int>(ControllerAnalog::TriggerLeft)]  = currentState.Gamepad.bLeftTrigger;
+			analogValues[static_cast<int>(ControllerAnalog::TriggerLeft)] = currentState.Gamepad.bLeftTrigger;
 			analogValues[static_cast<int>(ControllerAnalog::TriggerRight)] = currentState.Gamepad.bRightTrigger;
 
 			// Controller is connected
@@ -134,9 +128,6 @@ public:
 				notifiedControllerNotConnected[i] = true;
 			}
 		}
-		// }
-
-		return true;
 	}
 
 	[[nodiscard]] bool IsDown(ControllerButton button) const
@@ -154,6 +145,21 @@ public:
 		return currentState.Gamepad.wButtons & static_cast<unsigned int>(button);
 	}
 
+	[[nodiscard]] bool IsDown(const SDL_Scancode key) const
+	{
+		return keysPressedThisFrame[key];
+	}
+
+	[[nodiscard]] bool IsUp(const SDL_Scancode key) const
+	{
+		return keysReleasedThisFrame[key];
+	}
+
+	[[nodiscard]] bool IsPressed(const SDL_Scancode key) const
+	{
+		return keysPressed[key];
+	}
+
 
 	[[nodiscard]] bool HasState(const ControllerButton button, const ButtonState bState) const
 	{
@@ -162,6 +168,17 @@ public:
 		case ButtonState::Down: return IsDown(button);
 		case ButtonState::Up: return IsUp(button);
 		case ButtonState::Pressed: return IsPressed(button);
+		}
+		return false;
+	}
+
+	[[nodiscard]] bool HasState(const SDL_Scancode key, const ButtonState bState) const
+	{
+		switch (bState)
+		{
+        case ButtonState::Down: return IsDown(key);
+		case ButtonState::Up: return IsUp(key);
+		case ButtonState::Pressed: return IsPressed(key);
 		}
 		return false;
 	}
@@ -180,18 +197,31 @@ public:
 		{
 			command->Execute(analogValues[static_cast<int>(analog)]);
 		}
+		for (auto& [keyData, command] : keyboardCommandMap)
+		{
+			if (HasState(keyData.key, keyData.state))
+			{
+				command->Execute();
+			}
+		}
 	}
 
 	void BindButtonCommand(const ControllerButtonData cbd,
-	                       std::unique_ptr<Command>   command)
+	                       std::unique_ptr<Command> command)
 	{
 		buttonCommandMapping.insert_or_assign(cbd, std::move(command));
 	}
 
-	void BindAnalogCommand(const ControllerAnalog         cad,
+	void BindAnalogCommand(const ControllerAnalog cad,
 	                       std::unique_ptr<AnalogCommand> command)
 	{
 		analogCommandMapping.insert_or_assign(cad, std::move(command));
+	}
+
+	void BindKeyboardCommand(const KeyboardKeyData data,
+	                         std::unique_ptr<Command> command)
+	{
+		keyboardCommandMap.insert_or_assign(data, std::move(command));
 	}
 };
 
@@ -210,9 +240,14 @@ dae::InputManager::~InputManager()
 	delete pImpl;
 }
 
-bool dae::InputManager::ProcessInput() const
+void dae::InputManager::ProcessSDLKeyEvent(const SDL_Event e) const
 {
-	return pImpl->ProcessInput();
+	pImpl->ProcessSDLKeyEvent(e);
+}
+
+void dae::InputManager::ProcessInput() const
+{
+	pImpl->ProcessInput();
 }
 
 bool dae::InputManager::HasState(const ControllerButton button, const ButtonState bState) const
@@ -225,12 +260,17 @@ void dae::InputManager::HandleInput() const
 	pImpl->HandleInput();
 }
 
-void dae::InputManager::BindButtonCommand(const ControllerButtonData data, std::unique_ptr<Command> command) const
+void dae::InputManager::BindButtonCommand(const ControllerButtonData d, std::unique_ptr<Command> c) const
 {
-	pImpl->BindButtonCommand(data, std::move(command));
+	pImpl->BindButtonCommand(d, std::move(c));
 }
 
 void dae::InputManager::BindAnalogCommand(const ControllerAnalog d, std::unique_ptr<AnalogCommand> c) const
 {
 	pImpl->BindAnalogCommand(d, std::move(c));
+}
+
+void dae::InputManager::BindKeyCommand(const KeyboardKeyData d, std::unique_ptr<Command> c) const
+{
+	pImpl->BindKeyboardCommand(d, std::move(c));
 }
