@@ -1,9 +1,6 @@
 #include "MiniginPCH.h"
 #include "Minigin.h"
 
-// #include <steam_api_common.h>
-#include <thread>
-
 #include "AudioEventQueue.h"
 #include "EventQueue.h"
 #include "InputManager.h"
@@ -12,6 +9,7 @@
 #include "ResourceManager.h"
 #include "GameObject.h"
 #include "GraphicsComponent.h"
+#include "Highscores.h"
 #include "HUD.h"
 #include "LevelManager.h"
 #include "Locator.h"
@@ -111,6 +109,9 @@ void dae::Minigin::LoadGame()
 	fpsHolder->AddChild(go);
 
 	LevelManager::GetInstance().LoadNextLevel();
+
+	highscores = std::make_shared<Highscores>();
+	highscores->FetchHighscores(); // TODO do this in a loop?
 
 	peterPepper->Die();
 }

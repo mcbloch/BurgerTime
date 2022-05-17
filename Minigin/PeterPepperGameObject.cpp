@@ -13,7 +13,7 @@ dae::PeterPepperGameObject::PeterPepperGameObject() : m_GameObject(std::make_sha
 	m_GameObject->AddComponent(new PlayerStatsComponent(m_GameObject, 5));
 	m_GameObject->AddComponent(new SpriteMapTextureComponent(
 		m_GameObject, "sprites/spritesheet.png",
-		0, 0, 16, 16, 2.f));
+		0, 0, 16, 16, 3.f));
 
 	const auto& input = InputManager::GetInstance();
 

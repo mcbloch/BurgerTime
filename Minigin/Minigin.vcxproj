@@ -62,24 +62,28 @@
     <Import Project="..\vld.props" />
     <Import Project="..\sdl.props" />
     <Import Project="..\imgui.props" />
+    <Import Project="..\web.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\vld.props" />
     <Import Project="..\sdl.props" />
     <Import Project="..\imgui.props" />
+    <Import Project="..\web.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\vld.props" />
     <Import Project="..\sdl.props" />
     <Import Project="..\imgui.props" />
+    <Import Project="..\web.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\vld.props" />
     <Import Project="..\sdl.props" />
     <Import Project="..\imgui.props" />
+    <Import Project="..\web.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -113,8 +117,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\3rdParty\steamworks\redistributable_bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>xinput.lib;opengl32.lib;steam_api.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>xinput.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>LinkVerboseLib</ShowProgress>
     </Link>
     <PostBuildEvent />
@@ -122,6 +125,9 @@
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
+    <PostBuildEvent />
+    <PostBuildEvent />
+    <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -139,8 +145,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\3rdParty\steamworks\redistributable_bin\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>xinput.lib;opengl32.lib;steam_api64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>xinput.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>LinkVerboseLib</ShowProgress>
     </Link>
     <PostBuildEvent />
@@ -151,6 +156,9 @@
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
+    <PostBuildEvent />
+    <PostBuildEvent />
+    <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -171,8 +179,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\3rdParty\steamworks\redistributable_bin;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>xinput.lib;opengl32.lib;steam_api.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>xinput.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>LinkVerboseLib</ShowProgress>
     </Link>
     <PostBuildEvent />
@@ -180,6 +187,9 @@
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
+    <PostBuildEvent />
+    <PostBuildEvent />
+    <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -200,8 +210,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\3rdParty\steamworks\redistributable_bin\win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>xinput.lib;opengl32.lib;steam_api64.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>xinput.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ShowProgress>LinkVerboseLib</ShowProgress>
     </Link>
     <PostBuildEvent />
@@ -209,6 +218,9 @@
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
+    <PostBuildEvent />
+    <PostBuildEvent />
+    <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\3rdParty\imgui-1.86\backends\imgui_impl_opengl2.h" />
@@ -220,50 +232,6 @@
     <ClInclude Include="..\3rdParty\imgui-1.86\imstb_textedit.h" />
     <ClInclude Include="..\3rdParty\imgui-1.86\imstb_truetype.h" />
     <ClInclude Include="..\3rdParty\imgui-plot\include\imgui_plot.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamapplist.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamapps.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamappticket.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamclient.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamcontroller.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamfriends.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamgamecoordinator.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamgameserver.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamgameserverstats.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamhtmlsurface.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamhttp.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteaminput.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteaminventory.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteammatchmaking.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteammusic.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteammusicremote.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamnetworking.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamnetworkingmessages.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamnetworkingsockets.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamnetworkingutils.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamparentalsettings.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamps3overlayrenderer.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamremoteplay.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamremotestorage.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamscreenshots.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamugc.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamuser.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamuserstats.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamutils.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\isteamvideo.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\matchmakingtypes.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\steamclientpublic.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\steamencryptedappticket.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\steamhttpenums.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\steamnetworkingfakeip.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\steamnetworkingtypes.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\steamps3params.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\steamtypes.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\steamuniverse.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\steam_api.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\steam_api_common.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\steam_api_flat.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\steam_api_internal.h" />
-    <ClInclude Include="..\3rdParty\steamworks\public\steam\steam_gameserver.h" />
     <ClInclude Include="Audio.h" />
     <ClInclude Include="AudioEventQueue.h" />
     <ClInclude Include="CacheExercise.h" />
@@ -277,6 +245,7 @@
     <ClInclude Include="Font.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GraphicsComponent.h" />
+    <ClInclude Include="Highscores.h" />
     <ClInclude Include="HUD.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="LevelManager.h" />
@@ -363,6 +332,7 @@
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GraphicsComponent.cpp" />
+    <ClCompile Include="Highscores.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="LevelManager.cpp" />
@@ -385,9 +355,6 @@
     <ClCompile Include="SDLMixAudio.cpp" />
     <ClCompile Include="Texture2D.cpp" />
     <ClCompile Include="Transform.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\3rdParty\steamworks\public\steam\steam_api.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,6 +1,7 @@
 #pragma once
 #include <thread>
 
+#include "Highscores.h"
 #include "Locator.h"
 #include "PeterPepperGameObject.h"
 #include "SDLMixAudio.h"
@@ -23,5 +24,6 @@ namespace dae
 		SDL_Window*      m_Window{};
 
 		std::shared_ptr<PeterPepperGameObject> peterPepper;
+		std::shared_ptr<Highscores> highscores;
 	};
 }
