@@ -13,6 +13,7 @@
 #include "GameObject.h"
 #include "GraphicsComponent.h"
 #include "HUD.h"
+#include "LevelManager.h"
 #include "Locator.h"
 #include "LoggedAudio.h"
 #include "PeterPepperGameObject.h"
@@ -109,6 +110,8 @@ void dae::Minigin::LoadGame()
 	go->AddComponent(new LocationComponent(go, 0, 20));
 	fpsHolder->AddChild(go);
 
+	LevelManager::GetInstance().LoadNextLevel();
+
 	peterPepper->Die();
 }
 
@@ -136,10 +139,15 @@ void dae::Minigin::Run()
 	LoadGame();
 
 	{
-		auto& renderer     = Renderer::GetInstance();
-		auto& sceneManager = SceneManager::GetInstance();
-		auto& input        = InputManager::GetInstance();
-		auto& eventQueue   = EventQueue::GetInstance();
+		const auto& renderer     = Renderer::GetInstance();
+		auto&       sceneManager = SceneManager::GetInstance();
+		const auto& input        = InputManager::GetInstance();
+		auto&       eventQueue   = EventQueue::GetInstance();
+
+		input.BindKeyCommand({SDL_SCANCODE_PAGEDOWN, ButtonState::Down},
+		                     std::make_unique<NextLevelCommand>(nullptr_t()));
+		input.BindKeyCommand({SDL_SCANCODE_PAGEUP, ButtonState::Down},
+		                     std::make_unique<PreviousLevelCommand>(nullptr_t()));
 
 		input.BindKeyCommand({SDL_SCANCODE_SPACE, ButtonState::Down}, std::make_unique<MusicPauseCommand>(nullptr_t()));
 		// AudioEventQueue::GetInstance().SendEvent(PlaySound, {BT_MUSIC});

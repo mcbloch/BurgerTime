@@ -18,6 +18,11 @@ void dae::SceneManager::Render(float dt)
 	}
 }
 
+std::shared_ptr<dae::Scene> dae::SceneManager::GetCurrentScene() const
+{
+	return m_Scenes.back();
+}
+
 dae::Scene& dae::SceneManager::CreateScene(const std::string& name)
 {
 	const auto& scene = std::shared_ptr<Scene>(new Scene(name));

@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "AudioEventQueue.h"
+#include "LevelManager.h"
 
 Command::Command(std::shared_ptr<dae::GameObject> actor)
 	: mActor(actor)
@@ -44,6 +45,16 @@ void MoveDownCommand::Execute()
 	const auto locComp = mActor->GetComponent<dae::LocationComponent>();
 	const auto pos = locComp->GetTransform().GetPosition();
 	locComp->SetPosition(pos.x, pos.y + speed);
+}
+
+void NextLevelCommand::Execute()
+{
+	dae::LevelManager::GetInstance().LoadNextLevel();
+}
+
+void PreviousLevelCommand::Execute()
+{
+	dae::LevelManager::GetInstance().LoadPreviousLevel();
 }
 
 // void BrakeCommand::Execute(const short value)

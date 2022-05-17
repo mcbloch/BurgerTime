@@ -10,8 +10,9 @@ namespace dae
 	public:
 		Scene& CreateScene(const std::string& name);
 
-		void Update(float deltaTime);
-		void Render(float dt);
+		void                                 Update(float deltaTime);
+		void                                 Render(float dt);
+		[[nodiscard]] std::shared_ptr<Scene> GetCurrentScene() const;
 	private:
 		friend class Singleton<SceneManager>;
 		SceneManager() = default;

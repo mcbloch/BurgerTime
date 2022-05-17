@@ -54,6 +54,18 @@ public:
 	void Execute() override;
 };
 
+class NextLevelCommand final : public Command
+{
+public:
+	using Command::Command;
+	void Execute() override;
+};
+class PreviousLevelCommand final : public Command
+{
+public:
+	using Command::Command;
+	void Execute() override;
+};
 
 class AnalogCommand
 {
