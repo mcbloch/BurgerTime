@@ -21,9 +21,11 @@ engine = sqlalchemy.create_engine(
 )
 metadata.create_all(engine)
 
+
 class HighscoreIn(BaseModel):
     name: str
     score: int
+
 
 class Highscore(BaseModel):
     id: int
