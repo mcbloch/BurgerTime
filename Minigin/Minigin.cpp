@@ -47,7 +47,7 @@ void dae::Minigin::Initialize()
 	}
 
 	m_Window = SDL_CreateWindow(
-		"Programming 4 assignment",
+		"Burger Time",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
 		1040, // 640
@@ -77,10 +77,6 @@ void dae::Minigin::LoadGame()
 	//go->AddComponent(new TextureComponent("logo.png"));
 	//go->SetPosition(216, 180);
 	//scene.Add(go);
-
-	peterPepper = std::make_shared<PeterPepperGameObject>();
-	scene.Add(peterPepper->GetGameObject());
-	peterPepper->InitHandlers();
 
 	const auto hud = std::make_shared<HUD>();
 	hud->InitHandlers();
@@ -113,6 +109,10 @@ void dae::Minigin::LoadGame()
 	highscores = std::make_shared<Highscores>();
 	highscores->FetchHighscores(); // TODO do this in a loop?
 
+	peterPepper = std::make_shared<PeterPepperGameObject>();
+	scene.Add(peterPepper->GetGameObject());
+	peterPepper->InitHandlers();
+
 	peterPepper->Die();
 }
 
@@ -136,6 +136,7 @@ void dae::Minigin::Run()
 	enableAudioLogging();
 
 	AudioEventQueue::GetInstance().SendEvent(PlaySound, {BT_MUSIC});
+	AudioEventQueue::GetInstance().SendEvent(PauseSounds, {BT_MUSIC});
 
 	LoadGame();
 

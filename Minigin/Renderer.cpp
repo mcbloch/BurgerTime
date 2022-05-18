@@ -128,5 +128,7 @@ void dae::Renderer::RenderTexture(
 	dst.y = static_cast<int>(y);
 	dst.w = static_cast<int>(width);
 	dst.h = static_cast<int>(height);
+
+	// SDL_SetColorKey(texture.GetSDLTexture(), TRUE, 0);
 	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), &src, &dst);
 }

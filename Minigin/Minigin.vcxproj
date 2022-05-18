@@ -245,6 +245,7 @@
     <ClInclude Include="Font.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GraphicsComponent.h" />
+    <ClInclude Include="GridComponent.h" />
     <ClInclude Include="Highscores.h" />
     <ClInclude Include="HUD.h" />
     <ClInclude Include="InputManager.h" />
@@ -332,6 +333,7 @@
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GraphicsComponent.cpp" />
+    <ClCompile Include="GridComponent.cpp" />
     <ClCompile Include="Highscores.cpp" />
     <ClCompile Include="HUD.cpp" />
     <ClCompile Include="InputManager.cpp" />

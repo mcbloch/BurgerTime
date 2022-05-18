@@ -64,8 +64,8 @@ void dae::LevelManager::LoadLevel(int) const
 		go, m_LevelSpriteFile,
 		((currentLevel % 3) * (208 + 8)),
 		((currentLevel / 3) * ((200 + 8) * 2)),
-		208, 200, 3.f));
-	go->AddComponent(new LocationComponent(go, float(20), float(50)));
+		208, 200, 2.5f));
+	go->AddComponent(new LocationComponent(go, float(20), float(100)));
 	scene->Add(go);
 
 	return;

@@ -53,11 +53,14 @@ namespace dae
 
 	class Font;
 
+	// http://utf8everywhere.org/
 	class TextComponent : public Component
 	{
 	public:
 		TextComponent() = default;
 		TextComponent(std::shared_ptr<GameObject> go, const std::string& text, const std::shared_ptr<Font>& font);
+		TextComponent(std::shared_ptr<GameObject> go, const std::string& text, const std::shared_ptr<Font>& font,
+		              int                         wrapLength);
 
 		void SetText(const std::string& text);
 
@@ -70,7 +73,8 @@ namespace dae
 		std::shared_ptr<Font>      m_Font;
 		std::shared_ptr<Texture2D> m_TextTexture;
 
-		SDL_Color m_Color = {255, 255, 255};
+		SDL_Color m_Color      = {255, 255, 255};
+		Uint32    m_WrapLength = 16384; // Max texture dimension for SDL
 	};
 
 

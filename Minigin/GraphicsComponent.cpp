@@ -44,18 +44,26 @@ dae::TextComponent::TextComponent(const std::shared_ptr<GameObject> go, const st
 {
 }
 
+dae::TextComponent::TextComponent(const std::shared_ptr<GameObject> go, const std::string& text,
+                                  const std::shared_ptr<Font>&      font, const int        wrapLength)
+	: Component(go), m_Text(text), m_Font(font), m_TextTexture(nullptr), m_WrapLength(wrapLength)
+{
+}
+
 void dae::TextComponent::Update(float)
 {
 	if (m_NeedsUpdate)
 	{
-		const auto surf = TTF_RenderText_Blended(m_Font->GetFont(), m_Text.c_str(), m_Color);
+		const auto surf = TTF_RenderUTF8_Blended_Wrapped(m_Font->GetFont(), m_Text.c_str(), m_Color, m_WrapLength);
 		if (surf == nullptr)
 		{
+			printf("Error : %s", TTF_GetError());
 			throw std::runtime_error(std::string("Render text failed: ") + SDL_GetError());
 		}
 		auto texture = SDL_CreateTextureFromSurface(Renderer::GetInstance().GetSDLRenderer(), surf);
 		if (texture == nullptr)
 		{
+			printf("Error : %s", SDL_GetError());
 			throw std::runtime_error(std::string("Create text texture from surface failed: ") + SDL_GetError());
 		}
 		SDL_FreeSurface(surf);

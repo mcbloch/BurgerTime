@@ -15,7 +15,7 @@
 #include "SceneManager.h"
 #include "curl/curl.h"
 
-using namespace std;
+using string = std::string;
 using json = nlohmann::json;
 
 //
@@ -41,11 +41,11 @@ dae::Highscores::Highscores()
 {
 	const auto& scene = SceneManager::GetInstance().GetCurrentScene();
 	highscoreObject   = std::make_shared<GameObject>();
-	highscoreObject->AddComponent(new LocationComponent(highscoreObject, 80, 40));
+	highscoreObject->AddComponent(new LocationComponent(highscoreObject, 800, 150));
 	highscoreObject->AddComponent(new TextComponent(
 		highscoreObject,
-		"Highscores\n-----------\nLoading...",
-		ResourceManager::GetInstance().LoadFont("Lingua.otf", 36)));
+		"Highscores \n────────── \nLoading... ",
+		ResourceManager::GetInstance().LoadFont("Nouveau_IBM_Stretch.ttf", 24)));
 	scene.get()->Add(highscoreObject);
 }
 
@@ -112,7 +112,7 @@ std::vector<dae::Highscore> dae::Highscores::FetchHighscores()
 	}
 
 	std::vector<Highscore> highscores{};
-	std::string highText{};
+	std::string            highText{};
 	for (auto jhigh : json::parse(buffer))
 	{
 		auto high = jhigh.get<Highscore>();
@@ -121,10 +121,11 @@ std::vector<dae::Highscore> dae::Highscores::FetchHighscores()
 		highText += high.name;
 		highText += ": ";
 		highText += std::to_string(high.score);
+		highText += " \n";
 	}
 
 	highscoreObject->GetComponent<TextComponent>()->SetText(
-		"Highscores\n---------- - \n" + highText);
+		string{"Highscores \n────────── \n"} + highText);
 
 	return highscores;
 }
