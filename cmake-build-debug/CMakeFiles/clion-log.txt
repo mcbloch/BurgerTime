@@ -1,0 +1,13 @@
+/home/maxime/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/home/maxime/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/ninja/linux/ninja -DCMAKE_CXX_COMPILER=g++ -G Ninja /home/maxime/Documents/DAE/BurgerTime
+-- Conan: Adjusting output directories
+-- Conan: Using cmake global configuration
+-- Conan: Adjusting default RPATHs Conan policies
+-- Conan: Adjusting language standard
+-- Current conanbuildinfo.cmake directory: /home/maxime/Documents/DAE/BurgerTime/cmake-build-debug
+-- Conan: Compiler GCC>=5, checking major version 10
+-- Conan: Checking correct version: 10
+CMAKE_SOURCE_DIR:/home/maxime/Documents/DAE/BurgerTime
+CMAKE_CURRENT_BINARY_DIR:/home/maxime/Documents/DAE/BurgerTime/cmake-build-debug
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/maxime/Documents/DAE/BurgerTime/cmake-build-debug

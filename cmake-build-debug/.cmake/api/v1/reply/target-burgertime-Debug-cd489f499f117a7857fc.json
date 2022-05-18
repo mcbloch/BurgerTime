@@ -1,0 +1,1642 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "bin/burgertime"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"link_directories",
+			"conan_global_flags",
+			"conan_basic_setup",
+			"target_link_libraries",
+			"add_compile_options",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt",
+			"cmake-build-debug/conanbuildinfo.cmake"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 39,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 8,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 1,
+				"line" : 5285,
+				"parent" : 2
+			},
+			{
+				"command" : 1,
+				"file" : 1,
+				"line" : 5786,
+				"parent" : 3
+			},
+			{
+				"command" : 4,
+				"file" : 0,
+				"line" : 41,
+				"parent" : 0
+			},
+			{
+				"command" : 5,
+				"file" : 1,
+				"line" : 5797,
+				"parent" : 3
+			},
+			{
+				"command" : 6,
+				"file" : 1,
+				"line" : 5779,
+				"parent" : 3
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 31,
+				"parent" : 0
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 33,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g    -std=c++20"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-DXML_STATIC"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-DLIBXML_STATIC"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-DFFI_BUILDING"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-DFLAC__NO_DLL"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-DLZMA_API_STATIC"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-D_DEFAULT_SOURCE"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-D_BSD_SOURCE"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-DHAS_FCHOWN"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-DHAS_STICKY_DIR_BIT"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-DLIBJPEG_STATIC"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-D_REENTRANT"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-DIMGUI_USER_CONFIG=\\\"imgui_user_config.h\\\""
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-DMODPLUG_STATIC"
+				},
+				{
+					"backtrace" : 6,
+					"fragment" : "-DMIKMOD_STATIC"
+				},
+				{
+					"fragment" : "-std=gnu++2a"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/sdl_image/2.0.5/_/_/package/3b2ac8ab0247849ac05a8a8c10ce3fa374b83971/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/sdl_image/2.0.5/_/_/package/3b2ac8ab0247849ac05a8a8c10ce3fa374b83971/include/SDL2"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/sdl_ttf/2.0.18/_/_/package/575235ee42cbcc48a6a14e2f62b5ad4eb460167e/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/sdl_ttf/2.0.18/_/_/package/575235ee42cbcc48a6a14e2f62b5ad4eb460167e/include/SDL2"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/sdl_mixer/2.0.4/_/_/package/99642c8630d68b6ee8db30b74702bd4718fef4c5/include/SDL2"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/implot/0.13/_/_/package/793e054d911f1fea2d647bc9148159599150fe71/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/glm/0.9.9.8/_/_/package/5ab84d6acfe1f23c4fae0ab88f26e3a396351ac9/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/sdl/2.0.16/_/_/package/08ca7e30bd647282c3468f45910018101840765f/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/sdl/2.0.16/_/_/package/08ca7e30bd647282c3468f45910018101840765f/include/SDL2"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/libtiff/4.3.0/_/_/package/45decf2f265a9a6a01b959bafc21551542ef03bc/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/freetype/2.11.1/_/_/package/bca7b8880d98719d556dd526ce612be20a815922/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/freetype/2.11.1/_/_/package/bca7b8880d98719d556dd526ce612be20a815922/include/freetype2"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/mpg123/1.29.3/_/_/package/47e9aa713c9171a3a8b54fedc6ccd7da5868d7d7/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/libmad/0.15.1b/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/opusfile/0.12/_/_/package/0ba6dc1ba38ca9e5afd7224827302f0480210c79/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/opusfile/0.12/_/_/package/0ba6dc1ba38ca9e5afd7224827302f0480210c79/include/opus"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/libmikmod/3.3.11.1/_/_/package/1cc4de73364c3b85b7e843f4e56dcce26ffa1ad6/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/libmodplug/0.8.9.0/_/_/package/82ef5eac51c38971dea2fd342dd55ddf2ddfbbc3/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/libmodplug/0.8.9.0/_/_/package/82ef5eac51c38971dea2fd342dd55ddf2ddfbbc3/include/libmodplug"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/tinymidi/cci.20130325/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/imgui/1.87/_/_/package/82ef5eac51c38971dea2fd342dd55ddf2ddfbbc3/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/pulseaudio/14.2/_/_/package/c63e3687eb4370c7bcc632afbe163773ea0d1d6f/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/nas/1.9.4/_/_/package/31a8529c59d23b8fcf418388848095be767e8fed/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/xkbcommon/1.4.0/_/_/package/bf8877758d25c5bc4323539893ca86bd472041d9/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/libunwind/1.6.2/_/_/package/3a0a715466fc7c6bd32637fa9dbcca2a2e46c4a5/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/libdeflate/1.8/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/libjpeg/9d/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/jbig/20160605/_/_/package/5dedf41b83996f2663697c4c548617b81e83ca54/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/zstd/1.5.0/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/libwebp/1.2.1/_/_/package/abc00ad0249e9242a1b4cfef4dc265e67c782e32/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/libpng/1.6.37/_/_/package/d5b3dc27faecfb4eb94086722000dd65bb9e6bff/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/bzip2/1.0.8/_/_/package/91a8b22c2c5a149bc617cfc06cdd21bf23b12567/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/brotli/1.0.9/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/brotli/1.0.9/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/include/brotli"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/libalsa/1.2.5.1/_/_/package/51e96d1346424f5ef647616231906873cd225eb3/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/libsndfile/1.0.31/_/_/package/73e8d5f68c1a6912169268c061ca0c85bc58797e/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/libcap/2.50/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/usr/include/uuid"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/usr/include/freetype2"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/usr/include/libpng16"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/openssl/1.1.1l/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/wayland/1.20.0/_/_/package/0ea8e8796ff952e6271817412d58b67a6a412acf/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/xz_utils/5.2.5/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/vorbis/1.3.7/_/_/package/6e4bc3ab815736fa7c637f569f101e1193ddb5da/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/flac/1.3.3/_/_/package/2c7e03b511b6c441dcef1045ca0020a42702472e/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/opus/1.3.1/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/opus/1.3.1/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/include/opus"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/libffi/3.4.2/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/libxml2/2.9.13/_/_/package/f9bf12b05a917e3b694bc35eb5037c71fbf6b7ca/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/libxml2/2.9.13/_/_/package/f9bf12b05a917e3b694bc35eb5037c71fbf6b7ca/include/libxml2"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/expat/2.4.8/_/_/package/859363389e24f9402c19222fd527806e3c413615/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/libiconv/1.16/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/ogg/1.3.5/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/include"
+				},
+				{
+					"backtrace" : 7,
+					"path" : "/home/maxime/.conan/data/zlib/1.2.11/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/include"
+				},
+				{
+					"backtrace" : 8,
+					"path" : "/home/maxime/Documents/DAE/BurgerTime/."
+				},
+				{
+					"backtrace" : 9,
+					"path" : "/home/maxime/Documents/DAE/BurgerTime/src"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "23"
+			},
+			"sourceIndexes" : 
+			[
+				2,
+				4,
+				6,
+				10,
+				12,
+				14,
+				16,
+				18,
+				20,
+				22,
+				24,
+				26,
+				28,
+				32,
+				33,
+				35,
+				38,
+				40,
+				42,
+				44,
+				46,
+				48,
+				50,
+				53,
+				54,
+				56
+			]
+		}
+	],
+	"id" : "burgertime::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/sdl_image/2.0.5/_/_/package/3b2ac8ab0247849ac05a8a8c10ce3fa374b83971/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/sdl_ttf/2.0.18/_/_/package/575235ee42cbcc48a6a14e2f62b5ad4eb460167e/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/sdl_mixer/2.0.4/_/_/package/99642c8630d68b6ee8db30b74702bd4718fef4c5/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/implot/0.13/_/_/package/793e054d911f1fea2d647bc9148159599150fe71/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/sdl/2.0.16/_/_/package/08ca7e30bd647282c3468f45910018101840765f/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/libtiff/4.3.0/_/_/package/45decf2f265a9a6a01b959bafc21551542ef03bc/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/freetype/2.11.1/_/_/package/bca7b8880d98719d556dd526ce612be20a815922/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/mpg123/1.29.3/_/_/package/47e9aa713c9171a3a8b54fedc6ccd7da5868d7d7/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/libmad/0.15.1b/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/opusfile/0.12/_/_/package/0ba6dc1ba38ca9e5afd7224827302f0480210c79/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/libmikmod/3.3.11.1/_/_/package/1cc4de73364c3b85b7e843f4e56dcce26ffa1ad6/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/libmodplug/0.8.9.0/_/_/package/82ef5eac51c38971dea2fd342dd55ddf2ddfbbc3/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/tinymidi/cci.20130325/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/imgui/1.87/_/_/package/82ef5eac51c38971dea2fd342dd55ddf2ddfbbc3/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/pulseaudio/14.2/_/_/package/c63e3687eb4370c7bcc632afbe163773ea0d1d6f/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/pulseaudio/14.2/_/_/package/c63e3687eb4370c7bcc632afbe163773ea0d1d6f/lib/pulseaudio",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/nas/1.9.4/_/_/package/31a8529c59d23b8fcf418388848095be767e8fed/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/xkbcommon/1.4.0/_/_/package/bf8877758d25c5bc4323539893ca86bd472041d9/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/libunwind/1.6.2/_/_/package/3a0a715466fc7c6bd32637fa9dbcca2a2e46c4a5/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/libdeflate/1.8/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/libjpeg/9d/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/jbig/20160605/_/_/package/5dedf41b83996f2663697c4c548617b81e83ca54/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/zstd/1.5.0/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/libwebp/1.2.1/_/_/package/abc00ad0249e9242a1b4cfef4dc265e67c782e32/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/libpng/1.6.37/_/_/package/d5b3dc27faecfb4eb94086722000dd65bb9e6bff/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/bzip2/1.0.8/_/_/package/91a8b22c2c5a149bc617cfc06cdd21bf23b12567/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/brotli/1.0.9/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/libalsa/1.2.5.1/_/_/package/51e96d1346424f5ef647616231906873cd225eb3/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/libsndfile/1.0.31/_/_/package/73e8d5f68c1a6912169268c061ca0c85bc58797e/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/libcap/2.50/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/openssl/1.1.1l/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/wayland/1.20.0/_/_/package/0ea8e8796ff952e6271817412d58b67a6a412acf/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/xz_utils/5.2.5/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/vorbis/1.3.7/_/_/package/6e4bc3ab815736fa7c637f569f101e1193ddb5da/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/flac/1.3.3/_/_/package/2c7e03b511b6c441dcef1045ca0020a42702472e/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/opus/1.3.1/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/libffi/3.4.2/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/libxml2/2.9.13/_/_/package/f9bf12b05a917e3b694bc35eb5037c71fbf6b7ca/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/expat/2.4.8/_/_/package/859363389e24f9402c19222fd527806e3c413615/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/libiconv/1.16/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/ogg/1.3.5/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 4,
+				"fragment" : "-L/home/maxime/.conan/data/zlib/1.2.11/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib",
+				"role" : "libraryPath"
+			},
+			{
+				"fragment" : "-Wl,-rpath,/home/maxime/.conan/data/sdl_image/2.0.5/_/_/package/3b2ac8ab0247849ac05a8a8c10ce3fa374b83971/lib:/home/maxime/.conan/data/sdl_ttf/2.0.18/_/_/package/575235ee42cbcc48a6a14e2f62b5ad4eb460167e/lib:/home/maxime/.conan/data/sdl_mixer/2.0.4/_/_/package/99642c8630d68b6ee8db30b74702bd4718fef4c5/lib:/home/maxime/.conan/data/implot/0.13/_/_/package/793e054d911f1fea2d647bc9148159599150fe71/lib:/home/maxime/.conan/data/sdl/2.0.16/_/_/package/08ca7e30bd647282c3468f45910018101840765f/lib:/home/maxime/.conan/data/libtiff/4.3.0/_/_/package/45decf2f265a9a6a01b959bafc21551542ef03bc/lib:/home/maxime/.conan/data/freetype/2.11.1/_/_/package/bca7b8880d98719d556dd526ce612be20a815922/lib:/home/maxime/.conan/data/mpg123/1.29.3/_/_/package/47e9aa713c9171a3a8b54fedc6ccd7da5868d7d7/lib:/home/maxime/.conan/data/libmad/0.15.1b/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib:/home/maxime/.conan/data/opusfile/0.12/_/_/package/0ba6dc1ba38ca9e5afd7224827302f0480210c79/lib:/home/maxime/.conan/data/libmikmod/3.3.11.1/_/_/package/1cc4de73364c3b85b7e843f4e56dcce26ffa1ad6/lib:/home/maxime/.conan/data/libmodplug/0.8.9.0/_/_/package/82ef5eac51c38971dea2fd342dd55ddf2ddfbbc3/lib:/home/maxime/.conan/data/tinymidi/cci.20130325/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib:/home/maxime/.conan/data/imgui/1.87/_/_/package/82ef5eac51c38971dea2fd342dd55ddf2ddfbbc3/lib:/home/maxime/.conan/data/pulseaudio/14.2/_/_/package/c63e3687eb4370c7bcc632afbe163773ea0d1d6f/lib:/home/maxime/.conan/data/pulseaudio/14.2/_/_/package/c63e3687eb4370c7bcc632afbe163773ea0d1d6f/lib/pulseaudio:/home/maxime/.conan/data/nas/1.9.4/_/_/package/31a8529c59d23b8fcf418388848095be767e8fed/lib:/home/maxime/.conan/data/xkbcommon/1.4.0/_/_/package/bf8877758d25c5bc4323539893ca86bd472041d9/lib:/home/maxime/.conan/data/libunwind/1.6.2/_/_/package/3a0a715466fc7c6bd32637fa9dbcca2a2e46c4a5/lib:/home/maxime/.conan/data/libdeflate/1.8/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib:/home/maxime/.conan/data/libjpeg/9d/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib:/home/maxime/.conan/data/jbig/20160605/_/_/package/5dedf41b83996f2663697c4c548617b81e83ca54/lib:/home/maxime/.conan/data/zstd/1.5.0/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib:/home/maxime/.conan/data/libwebp/1.2.1/_/_/package/abc00ad0249e9242a1b4cfef4dc265e67c782e32/lib:/home/maxime/.conan/data/libpng/1.6.37/_/_/package/d5b3dc27faecfb4eb94086722000dd65bb9e6bff/lib:/home/maxime/.conan/data/bzip2/1.0.8/_/_/package/91a8b22c2c5a149bc617cfc06cdd21bf23b12567/lib:/home/maxime/.conan/data/brotli/1.0.9/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib:/home/maxime/.conan/data/libalsa/1.2.5.1/_/_/package/51e96d1346424f5ef647616231906873cd225eb3/lib:/home/maxime/.conan/data/libsndfile/1.0.31/_/_/package/73e8d5f68c1a6912169268c061ca0c85bc58797e/lib:/home/maxime/.conan/data/libcap/2.50/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib:/home/maxime/.conan/data/openssl/1.1.1l/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib:/home/maxime/.conan/data/wayland/1.20.0/_/_/package/0ea8e8796ff952e6271817412d58b67a6a412acf/lib:/home/maxime/.conan/data/xz_utils/5.2.5/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib:/home/maxime/.conan/data/vorbis/1.3.7/_/_/package/6e4bc3ab815736fa7c637f569f101e1193ddb5da/lib:/home/maxime/.conan/data/flac/1.3.3/_/_/package/2c7e03b511b6c441dcef1045ca0020a42702472e/lib:/home/maxime/.conan/data/opus/1.3.1/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib:/home/maxime/.conan/data/libffi/3.4.2/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib:/home/maxime/.conan/data/libxml2/2.9.13/_/_/package/f9bf12b05a917e3b694bc35eb5037c71fbf6b7ca/lib:/home/maxime/.conan/data/expat/2.4.8/_/_/package/859363389e24f9402c19222fd527806e3c413615/lib:/home/maxime/.conan/data/libiconv/1.16/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib:/home/maxime/.conan/data/ogg/1.3.5/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib:/home/maxime/.conan/data/zlib/1.2.11/_/_/package/19729b9559f3ae196cad45cb2b97468ccb75dcd1/lib",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lSDL2_image",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lSDL2_ttf",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lSDL2_mixer",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-limplot",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lSDL2main",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lSDL2",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-ltiffxx",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-ltiff",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lfreetype",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lout123",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lsyn123",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lmpg123",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lmad",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lopusurl",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lopusfile",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lmikmod",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lmodplug",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-ltinymidi",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-limgui",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lpulse-simple",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lpulse",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lpulsecommon-14.2",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-laudio",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lxkbcommon-x11",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lxkbcommon",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lxkbregistry",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lunwind-ptrace",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lunwind-setjmp",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lunwind-coredump",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lunwind-generic",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lunwind",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-ldeflate",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-ljpeg",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-ljbig",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lzstd",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lwebpdecoder",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lwebpdemux",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lwebpmux",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lwebp",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lpng16",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lbz2",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lbrotlidec-static",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lbrotlienc-static",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lbrotlicommon-static",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lasound",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lsndfile",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lcap",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lssl",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lcrypto",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lwayland-server",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lwayland-cursor",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lwayland-egl",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lwayland-client",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-llzma",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lvorbisenc",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lvorbisfile",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lvorbis",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lFLAC++",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lFLAC",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lopus",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lffi",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lxml2",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lexpat",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-liconv",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lcharset",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-logg",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lz",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lstdc++",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lGL",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lEGL",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lX11",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lX11-xcb",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lxcb",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lfontenc",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lICE",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lSM",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXau",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXaw7",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXt",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXcomposite",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXcursor",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXdamage",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXfixes",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXdmcp",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXext",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXft",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXi",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXinerama",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lxkbfile",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXmu",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXmuu",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXpm",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXrandr",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXrender",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXRes",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXss",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXtst",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXv",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXvMC",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lXxf86vm",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lxcb-xkb",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lxcb-icccm",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lxcb-image",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lxcb-shm",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lxcb-keysyms",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lxcb-randr",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lxcb-render",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lxcb-render-util",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lxcb-shape",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lxcb-sync",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lxcb-xfixes",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lxcb-xinerama",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lxcb-util",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lxcb-dri3",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-ldl",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lrt",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lm",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 5,
+				"fragment" : "-lpthread",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "burgertime",
+	"nameOnDisk" : "burgertime",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				3,
+				5,
+				7,
+				8,
+				9,
+				11,
+				13,
+				15,
+				17,
+				19,
+				21,
+				23,
+				25,
+				27,
+				29,
+				30,
+				31,
+				34,
+				36,
+				37,
+				39,
+				41,
+				43,
+				45,
+				47,
+				49,
+				51,
+				52,
+				55,
+				57
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				2,
+				4,
+				6,
+				10,
+				12,
+				14,
+				16,
+				18,
+				20,
+				22,
+				24,
+				26,
+				28,
+				32,
+				33,
+				35,
+				38,
+				40,
+				42,
+				44,
+				46,
+				48,
+				50,
+				53,
+				54,
+				56
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/Audio.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/AudioEventQueue.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/CacheExercise.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/CacheExercise.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/Command.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/Command.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/Component.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/Component.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/Components.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/ConcurrentQueue.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/Event.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/Event.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/EventHandler.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/EventHandler.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/EventHandlerComponent.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/EventHandlerComponent.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/EventQueue.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/EventQueue.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/Font.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/Font.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/GameObject.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/GameObject.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/GraphicsComponent.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/GraphicsComponent.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/HUD.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/HUD.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/InputManager.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/InputManager.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/LocationComponent.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/LocationComponent.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/Locator.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/LoggedAudio.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/Main.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/Minigin.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/Minigin.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/MiniginPCH.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/MiniginPCH.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/NullAudio.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/PeterPepperGameObject.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/PeterPepperGameObject.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/PlayerStatsComponent.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/PlayerStatsComponent.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/Renderer.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/Renderer.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/ResourceManager.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/ResourceManager.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/SDLMixAudio.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/SDLMixAudio.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/Scene.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/Scene.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/SceneManager.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/SceneManager.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/Singleton.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/TextObject.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/Texture2D.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/Texture2D.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Minigin/Transform.cpp",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Minigin/Transform.h",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}
