@@ -1,4 +1,16 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    <title>Burgertime</title>
+  </head>
+  <body>
 <h1 id="burgertime-server">Burgertime server</h1>
+<blockquote>
+<p><a
+href="https://burgertime.genac.games">burgertime.genac.games</a></p>
+</blockquote>
 <p>Git repository: <a href="https://github.com/mcbloch/burgertime"
 class="uri">https://github.com/mcbloch/burgertime</a></p>
 <p>Build using <a href="https://fastapi.tiangolo.com">FastAPI</a>.</p>
@@ -15,12 +27,24 @@ href="./redoc">/redoc</a>.</p>
 <code>http POST localhost:8000/highscores/ name=hello score=23</code></li>
 </ul>
 <h2 id="development">Development</h2>
+<p><strong>Requirements</strong>:</p>
+<ul>
+<li>make</li>
+<li>pandoc</li>
+<li>python 3.10.4</li>
+<li>(optional) docker</li>
+<li>(optional) docker-compose</li>
+</ul>
 <p>Running the dev server</p>
-<pre><code>    poetry run python -m uvicorn main:app --reload</code></pre>
+<pre><code>    make run</code></pre>
 <p>Or in docker</p>
 <pre><code>    docker build -t bt-server .
     docker run -it --rm -p 8000:8000 bt-server</code></pre>
+<p>Or with docker-compose</p>
+<pre><code>    docker-compose up --build</code></pre>
 <h2 id="roadmap">Roadmap</h2>
 <ul>
 <li>Authentication using a shared secret</li>
 </ul>
+  </body>
+</html>

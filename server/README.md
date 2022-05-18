@@ -1,5 +1,7 @@
 # Burgertime server
 
+> [burgertime.genac.games](https://burgertime.genac.games)
+
 Git repository: <https://github.com/mcbloch/burgertime>
 
 Build using [FastAPI](https://fastapi.tiangolo.com).
@@ -17,9 +19,17 @@ Detailed docs can be found at [/docs](./docs) or [/redoc](./redoc).
 
 ## Development
 
+**Requirements**:
+
+- make
+- pandoc
+- python 3.10.4
+- (optional) docker
+- (optional) docker-compose
+
 Running the dev server
 
-        poetry run python -m uvicorn main:app --reload
+        make run
 
 Or in docker
 
@@ -28,7 +38,7 @@ Or in docker
 
 Or with docker-compose
 
-	docker-compose up --build
+        docker-compose up --build
 
 ## Roadmap
 
