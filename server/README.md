@@ -26,6 +26,10 @@ Or in docker
         docker build -t bt-server .
         docker run -it --rm -p 8000:8000 bt-server
 
+Or with docker-compose
+
+	docker-compose up --build
+
 ## Roadmap
 
 - Authentication using a shared secret
