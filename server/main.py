@@ -1,6 +1,7 @@
 from typing import Union, List
 
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 
 from db import Highscore, HighscoreIn, database, highscores
 
@@ -32,3 +33,5 @@ async def create_highscore(highscore: HighscoreIn):
     query = highscores.insert().values(name=highscore.name, score=highscore.score)
     last_record_id = await database.execute(query)
     return {**highscore.dict(), "id": last_record_id}
+
+app.mount("/", StaticFiles(directory="static",html = True), name="static")

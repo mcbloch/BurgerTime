@@ -1,0 +1,26 @@
+<h1 id="burgertime-server">Burgertime server</h1>
+<p>Git repository: <a href="https://github.com/mcbloch/burgertime"
+class="uri">https://github.com/mcbloch/burgertime</a></p>
+<p>Build using <a href="https://fastapi.tiangolo.com">FastAPI</a>.</p>
+<p>Accompanying server for the Burgertime recreation found in the parent
+folder.</p>
+<p>Saves highscores in a central location.</p>
+<h2 id="api-usage">API Usage</h2>
+<p>Detailed docs can be found at <a href="./docs">/docs</a> or <a
+href="./redoc">/redoc</a>.</p>
+<ul>
+<li>Get all highscores:
+<code>http GET localhost:8000/highscores/</code></li>
+<li>Create a new highscore:
+<code>http POST localhost:8000/highscores/ name=hello score=23</code></li>
+</ul>
+<h2 id="development">Development</h2>
+<p>Running the dev server</p>
+<pre><code>    poetry run python -m uvicorn main:app --reload</code></pre>
+<p>Or in docker</p>
+<pre><code>    docker build -t bt-server .
+    docker run -it --rm -p 8000:8000 bt-server</code></pre>
+<h2 id="roadmap">Roadmap</h2>
+<ul>
+<li>Authentication using a shared secret</li>
+</ul>
