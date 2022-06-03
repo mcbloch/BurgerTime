@@ -7,9 +7,12 @@ namespace dae
 	{
 		enum class LevelObject
 		{
-			platform,
-			burger,
-			ladder,
+			Platform,
+			Ladder,
+			BurgerTop,
+			BurgerLettuce,
+			BurgerMeat,
+			BurgerBottom
 		};
 
 	public:
@@ -20,8 +23,8 @@ namespace dae
 		[[nodiscard]] bool HasLadderPiece(std::pair<int, int> gridPos) const;
 
 	private:
-		void CreateLevelObject(LevelObject levelObject, int x, int y);
-		void LoadLevel(int level);
+		void CreateLevelObject(LevelObject levelObject, int col, int row);
+		void LoadLevel(int levelIndex);
 
 		int                        currentLevel = -1;
 		std::array<std::string, 6> levels{

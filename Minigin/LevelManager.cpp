@@ -33,20 +33,17 @@ void dae::LevelManager::CreateLevelObject(const LevelObject levelObject, const i
 {
 	const auto scene = SceneManager::GetInstance().GetCurrentScene();
 
-	std::string text;
-	switch (levelObject)
-	{
-	case LevelObject::platform:
-		text = "platform";
-		break;
-	case LevelObject::burger:
-		text = "burger";
-		break;
-	case LevelObject::ladder:
-		text = "ladder";
-		break;
-	default: ;
-	}
+	// std::string text;
+	// switch (levelObject)
+	// {
+	// case LevelObject::Platform:
+	// 	text = "platform";
+	// 	break;
+	// case LevelObject::Ladder:
+	// 	text = "ladder";
+	// 	break;
+	// default: ;
+	// }
 
 	// std::cout << "Loading level object '" << text << "' at location " << col << ", " << row << std::endl;
 
@@ -57,6 +54,38 @@ void dae::LevelManager::CreateLevelObject(const LevelObject levelObject, const i
 	// 	ResourceManager::GetInstance().LoadFont("Lingua.otf", 10)));
 	// go->AddComponent(new LocationComponent(go, float(x), float(y)));
 	// scene->Add(go);
+
+	int burgerYIndex = -1;
+	switch (levelObject)
+	{
+	case LevelObject::BurgerTop:
+		burgerYIndex = 0;
+		break;
+	case LevelObject::BurgerLettuce:
+		burgerYIndex = 5;
+		break;
+	case LevelObject::BurgerMeat:
+		burgerYIndex = 3;
+		break;
+	case LevelObject::BurgerBottom:
+		burgerYIndex = 1;
+		break;
+	default: break;
+	}
+
+	if (burgerYIndex >= 0)
+	{
+		const auto go = std::make_shared<GameObject>();
+		go->AddComponent(new SpriteMapTextureComponent(
+			go, "sprites/Arcade - Burger Time - Characters & Objects - Opaque.png",
+			7 * 16, 48 + (burgerYIndex * 8), 32, 8, 2.5f));
+		go->AddComponent(new LocationComponent(
+			go,
+			float(GridComponent::GridBaseX + col * GridComponent::GridCellSizeX + 8),
+			float(GridComponent::GridBaseY + row * GridComponent::GridCellSizeY + 28)
+		));
+		scene->Add(go);
+	}
 
 	levelObjects.emplace(std::make_pair(col, row), levelObject);
 }
@@ -91,11 +120,17 @@ void dae::LevelManager::LoadLevel(const int levelIndex)
 				LevelObject obj;
 				switch (line[col])
 				{
-				case '_': obj = LevelObject::platform;
+				case '_': obj = LevelObject::Platform;
 					break;
-				case '=': obj = LevelObject::burger;
+				case '|': obj = LevelObject::Ladder;
 					break;
-				case '|': obj = LevelObject::ladder;
+				case 'T': obj = LevelObject::BurgerTop;
+					break;
+				case 'L': obj = LevelObject::BurgerLettuce;
+					break;
+				case 'M': obj = LevelObject::BurgerMeat;
+					break;
+				case 'B': obj = LevelObject::BurgerBottom;
 					break;
 				case ' ': continue;
 				default:
@@ -120,8 +155,9 @@ bool dae::LevelManager::HasWalkablePiece(std::pair<int, int> gridPos) const
 	auto [x, y] = gridPos;
 	if (levelObjects.contains({x, y}))
 	{
-		auto& obj = levelObjects.at({x, y});
-		return obj == LevelObject::platform || obj == LevelObject::ladder;
+		return true;
+		// auto& obj = levelObjects.at({x, y});
+		// return obj == LevelObject::Platform || obj == LevelObject::Ladder;
 	}
 	return false;
 }
@@ -131,7 +167,7 @@ bool dae::LevelManager::HasLadderPiece(std::pair<int, int> gridPos) const
 	auto [x, y] = gridPos;
 	if (levelObjects.contains({x, y}))
 	{
-		return levelObjects.at({x, y}) == LevelObject::ladder;
+		return levelObjects.at({x, y}) == LevelObject::Ladder;
 	}
 	return false;
 }
