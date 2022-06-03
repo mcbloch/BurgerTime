@@ -48,20 +48,19 @@ namespace dae
 	template <typename T>
 	T* GameObject::GetComponent()
 	{
-		for (auto comp : m_Components)
+		for (auto& comp : m_Components)
 		{
-			if (dynamic_cast<T*>(comp) != nullptr)
-			{
+			if (dynamic_cast<T*>(comp))
 				return dynamic_cast<T*>(comp);
-			}
 		}
+
 		return nullptr;
 	}
 
 	template <typename T>
 	void GameObject::RemoveComponent() const
 	{
-		for (auto comp : m_Components)
+		for (auto& comp : m_Components)
 		{
 			if (dynamic_cast<T*>(comp) != nullptr)
 			{

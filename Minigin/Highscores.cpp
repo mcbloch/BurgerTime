@@ -60,6 +60,9 @@ std::vector<dae::Highscore> dae::Highscores::FetchHighscores()
 	static char        errorBuffer[CURL_ERROR_SIZE];
 	static std::string buffer;
 
+	highscoreObject->GetComponent<TextComponent>()->SetText(
+		string{"Highscores \n────────── \nFailed to load"});
+
 	conn = curl_easy_init();
 	if (conn == nullptr)
 	{
@@ -108,7 +111,7 @@ std::vector<dae::Highscore> dae::Highscores::FetchHighscores()
 	if (code != CURLE_OK)
 	{
 		fprintf(stderr, "Failed to get highscores [%s]\n", errorBuffer);
-		exit(EXIT_FAILURE);
+		return {};
 	}
 
 	std::vector<Highscore> highscores{};

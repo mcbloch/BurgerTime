@@ -17,8 +17,11 @@ namespace dae
 		int LoadPreviousLevel();
 
 	private:
-		void CreateLevelObject(const LevelObject levelObject, int x, int y) const;
-		void LoadLevel(int level) const;
+		void CreateLevelObject(LevelObject levelObject, int x, int y);
+		void LoadLevel(int level);
+
+		bool HasFloorPiece(int x, int y) const;
+		bool HasLadderPiece(int x, int y) const;
 
 		int                        currentLevel = -1;
 		std::array<std::string, 6> levels{
@@ -32,6 +35,8 @@ namespace dae
 		std::string m_LevelDataPath   = "../Data/levels/";
 		std::string m_LevelSpriteFile = "sprites/Arcade - Burger Time - Stages.png";
 		int         gridSize          = 50;
+
+		std::map<std::pair<int, int>, LevelObject> levelObjects{};
 
 	private:
 		friend class Singleton<LevelManager>;

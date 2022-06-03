@@ -38,22 +38,34 @@ void dae::TextureComponent::Render(float)
 }
 
 
-dae::TextComponent::TextComponent(const std::shared_ptr<GameObject> go, const std::string& text,
+dae::TextComponent::TextComponent(const std::shared_ptr<GameObject> go,
+                                  const std::string&                text,
                                   const std::shared_ptr<Font>&      font)
 	: Component(go), m_Text(text), m_Font(font), m_TextTexture(nullptr)
 {
 }
 
-dae::TextComponent::TextComponent(const std::shared_ptr<GameObject> go, const std::string& text,
-                                  const std::shared_ptr<Font>&      font, const int        wrapLength)
+dae::TextComponent::TextComponent(const std::shared_ptr<GameObject> go,
+                                  const std::string&                text,
+                                  const std::shared_ptr<Font>&      font,
+                                  const int                         wrapLength)
 	: Component(go), m_Text(text), m_Font(font), m_TextTexture(nullptr), m_WrapLength(wrapLength)
 {
 }
 
 void dae::TextComponent::Update(float)
 {
-	if (m_NeedsUpdate)
+	if ((m_NeedsUpdate || m_AlwaysUpdate))
 	{
+		if (m_TextLink != nullptr && m_TextLink)
+			m_Text = *m_TextLink.get();
+
+		// We can not render an empty text field.
+		// We then set the text to a space to the text does get cleared
+
+		if (m_Text.empty())
+			m_Text = " ";
+
 		const auto surf = TTF_RenderUTF8_Blended_Wrapped(m_Font->GetFont(), m_Text.c_str(), m_Color, m_WrapLength);
 		if (surf == nullptr)
 		{
@@ -84,54 +96,18 @@ void dae::TextComponent::Render(float)
 // This implementation uses the "dirty flag" pattern
 void dae::TextComponent::SetText(const std::string& text)
 {
-	m_Text        = text;
+	m_Text.assign(text);
 	m_NeedsUpdate = true;
 }
 
-dae::FPSComponent::FPSComponent(std::shared_ptr<GameObject> go) :
-	TextComponent(go, "", ResourceManager::GetInstance().LoadFont("Lingua.otf", 20))
+void dae::TextComponent::SetColor(const SDL_Color color)
 {
-	m_Color = {255, 255, 0};
+	m_Color       = color;
+	m_NeedsUpdate = true;
 }
 
-void dae::FPSComponent::Update(float dt)
+void dae::TextComponent::SetTextLink(const std::shared_ptr<std::string> textRef)
 {
-	TextComponent::Update(dt);
-}
-
-void dae::FPSComponent::Render(float dt)
-{
-	const float fps = 1.f / dt;
-
-	std::stringstream ss;
-	ss << std::fixed << std::setprecision(1) << fps;
-	const std::string fps_s = ss.str();
-
-	SetText(fps_s + " FPS");
-
-	TextComponent::Render(dt);
-}
-
-dae::FPSPhysicsComponent::FPSPhysicsComponent(std::shared_ptr<GameObject> go)
-	: TextComponent(go, "", ResourceManager::GetInstance().LoadFont("Lingua.otf", 20))
-{
-	m_Color = {255, 55, 0};
-}
-
-void dae::FPSPhysicsComponent::Update(float dt)
-{
-	const float fps = 1.f / dt;
-
-	std::stringstream ss;
-	ss << std::fixed << std::setprecision(1) << fps;
-	const std::string fps_s = ss.str();
-
-	SetText(fps_s + " TPS (physics)");
-
-	TextComponent::Update(dt);
-}
-
-void dae::FPSPhysicsComponent::Render(float dt)
-{
-	TextComponent::Render(dt);
+	m_TextLink     = textRef;
+	m_AlwaysUpdate = true;
 }

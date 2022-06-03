@@ -243,6 +243,7 @@
     <ClInclude Include="EventHandlerComponent.h" />
     <ClInclude Include="EventQueue.h" />
     <ClInclude Include="Font.h" />
+    <ClInclude Include="FPSComponent.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="GridComponent.h" />
@@ -331,6 +332,7 @@
     <ClCompile Include="EventHandlerComponent.cpp" />
     <ClCompile Include="EventQueue.cpp" />
     <ClCompile Include="Font.cpp" />
+    <ClCompile Include="FPSComponent.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="GridComponent.cpp" />

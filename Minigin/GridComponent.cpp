@@ -6,9 +6,8 @@
 dae::GridComponent::GridComponent(
 	const std::shared_ptr<GameObject> go,
 	const int                         gridBaseX,
-	const int                         gridBaseY,
-	const int                         gridCellSize) :
-	Component(go), m_GridBaseX(gridBaseX), m_GridBaseY(gridBaseY), m_GridCellSize(gridCellSize)
+	const int                         gridBaseY) :
+	Component(go), m_GridBaseX(gridBaseX), m_GridBaseY(gridBaseY)
 {
 }
 
@@ -16,8 +15,8 @@ void dae::GridComponent::Update(float)
 {
 	auto& pos = GetEntity()->GetComponent<LocationComponent>()->GetTransform().GetPosition();
 
-	const int newGridCol = (int(pos.x) - m_GridBaseX) / m_GridCellSize;
-	const int newGridRow = (int(pos.y) - m_GridBaseY) / m_GridCellSize;
+	const int newGridCol = (int(pos.x) - m_GridBaseX) / m_GridCellSizeX;
+	const int newGridRow = (int(pos.y) - m_GridBaseY) / m_GridCellSizeY;
 
 	if (newGridCol != m_GridC)
 	{

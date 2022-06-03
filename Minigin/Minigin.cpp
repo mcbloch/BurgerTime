@@ -3,6 +3,7 @@
 
 #include "AudioEventQueue.h"
 #include "EventQueue.h"
+#include "FPSComponent.h"
 #include "InputManager.h"
 #include "SceneManager.h"
 #include "Renderer.h"
@@ -17,6 +18,9 @@
 #include "PeterPepperGameObject.h"
 #include "Scene.h"
 #include "SDLMixAudio.h"
+
+#include <functional>
+using namespace std::placeholders;
 
 using namespace std;
 
@@ -69,15 +73,6 @@ void dae::Minigin::LoadGame()
 {
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
 
-	//auto go = std::make_shared<GameObject>();
-	//go->AddComponent(new TextureComponent("background.jpg"));
-	//scene.Add(go);
-
-	//go = std::make_shared<GameObject>();
-	//go->AddComponent(new TextureComponent("logo.png"));
-	//go->SetPosition(216, 180);
-	//scene.Add(go);
-
 	const auto hud = std::make_shared<HUD>();
 	hud->InitHandlers();
 	scene.Add(hud->GetGameObject());
@@ -91,18 +86,17 @@ void dae::Minigin::LoadGame()
 	scene.Add(go);
 
 	// Example that children work
-	const auto fpsHolder = std::make_shared<GameObject>();
-	scene.Add(fpsHolder);
+	const auto fpsCounter    = std::make_shared<GameObject>();
+	const auto fpsComponent  = new FPSComponent(go);
+	const auto textComponent = new TextComponent(go, std::string{},
+	                                             ResourceManager::GetInstance().LoadFont("Lingua.otf", 20));
+	textComponent->SetColor({255, 255, 0});
+	textComponent->SetTextLink(fpsComponent->GetTextLink());
 
-	go = std::make_shared<GameObject>();
-	go->AddComponent(new FPSComponent(go));
-	go->AddComponent(new LocationComponent(go, 0, 0));
-	fpsHolder->AddChild(go);
-
-	go = std::make_shared<GameObject>();
-	go->AddComponent(new FPSPhysicsComponent(go));
-	go->AddComponent(new LocationComponent(go, 0, 20));
-	fpsHolder->AddChild(go);
+	fpsCounter->AddComponent(fpsComponent);
+	fpsCounter->AddComponent(textComponent);
+	fpsCounter->AddComponent(new LocationComponent(go, 0, 0));
+	scene.Add(fpsCounter);
 
 	LevelManager::GetInstance().LoadNextLevel();
 

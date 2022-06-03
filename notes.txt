@@ -1,0 +1,13 @@
+bij een movecommand moet er gechecked worden of het geldig is
+
+naar horizontaal -> ophalen of daar grond is
+naar vertical -> ophalen of je in het midden van een trap staat
+
+move comp moet dan aan het level kunnen
+
+
+
+
+andere optie is alles in het grid registreren en als ze ergens naar moven ze
+ -> dit zijn teveel events
+ -> de horizontale check zou je nog niet weten

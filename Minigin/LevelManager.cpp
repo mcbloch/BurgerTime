@@ -28,7 +28,7 @@ int dae::LevelManager::LoadPreviousLevel()
 	return currentLevel;
 }
 
-void dae::LevelManager::CreateLevelObject(const LevelObject levelObject, const int x, const int y) const
+void dae::LevelManager::CreateLevelObject(const LevelObject levelObject, const int x, const int y)
 {
 	const auto scene = SceneManager::GetInstance().GetCurrentScene();
 
@@ -47,16 +47,17 @@ void dae::LevelManager::CreateLevelObject(const LevelObject levelObject, const i
 	default: ;
 	}
 
-	const auto go = std::make_shared<GameObject>();
-	go->AddComponent(new TextComponent(
-		go,
-		text,
-		ResourceManager::GetInstance().LoadFont("Lingua.otf", 10)));
-	go->AddComponent(new LocationComponent(go, float(x), float(y)));
-	scene->Add(go);
+	// const auto go = std::make_shared<GameObject>();
+	// go->AddComponent(new TextComponent(
+	// 	go,
+	// 	text,
+	// 	ResourceManager::GetInstance().LoadFont("Lingua.otf", 10)));
+	// go->AddComponent(new LocationComponent(go, float(x), float(y)));
+	// scene->Add(go);
+	levelObjects.emplace(std::make_pair(x, y), levelObject);
 }
 
-void dae::LevelManager::LoadLevel(int) const
+void dae::LevelManager::LoadLevel(const int levelIndex)
 {
 	const auto scene = SceneManager::GetInstance().GetCurrentScene();
 	const auto go    = std::make_shared<GameObject>();
@@ -68,39 +69,55 @@ void dae::LevelManager::LoadLevel(int) const
 	go->AddComponent(new LocationComponent(go, float(20), float(100)));
 	scene->Add(go);
 
-	return;
-	//
-	// std::ifstream infile(m_LevelDataPath + levelFile);
-	// if (infile.is_open())
-	// {
-	// 	std::string line;
-	// 	int         row = 0;
-	// 	while (std::getline(infile, line))
-	// 	{
-	// 		// std::istringstream iss(line);
-	// 		// int a, b;
-	// 		// if (!(iss >> a >> b)) { break; } // error
-	//
-	// 		// process pair (a,b)
-	//
-	// 		for (int col = 0; col < line.size(); col++)
-	// 		{
-	// 			const int x = 10 + (col * gridSize);
-	// 			const int y = 10 + (row * gridSize);
-	// 			switch (line[col])
-	// 			{
-	// 			case '-': CreateLevelObject(LevelObject::platform, x, y);
-	// 			case '=': CreateLevelObject(LevelObject::burger, x, y);
-	// 			case '|': CreateLevelObject(LevelObject::ladder, x, y);
-	// 			default: ;
-	// 			}
-	// 		}
-	//
-	// 		row += 1;
-	// 	}
-	// }
-	// else
-	// {
-	// 	throw std::runtime_error("Could not open level file: " + levelFile);
-	// }
+	std::ifstream infile(m_LevelDataPath + levels[levelIndex]);
+	if (infile.is_open())
+	{
+		std::string line;
+		int         row = 0;
+		while (std::getline(infile, line))
+		{
+			// std::istringstream iss(line);
+			// int a, b;
+			// if (!(iss >> a >> b)) { break; } // error
+
+			// process pair (a,b)
+
+			for (int col = 0; col < line.size(); col++)
+			{
+				const int x = 10 + (col * gridSize);
+				const int y = 10 + (row * gridSize);
+				switch (line[col])
+				{
+				case '-': CreateLevelObject(LevelObject::platform, x, y);
+				case '=': CreateLevelObject(LevelObject::burger, x, y);
+				case '|': CreateLevelObject(LevelObject::ladder, x, y);
+				default: ;
+				}
+			}
+
+			row += 1;
+		}
+	}
+	else
+	{
+		throw std::runtime_error("Could not open level file: " + levels[levelIndex]);
+	}
+}
+
+bool dae::LevelManager::HasFloorPiece(int x, int y) const
+{
+	if (levelObjects.contains({x, y}))
+	{
+		return levelObjects.at({x, y}) == LevelObject::platform;
+	}
+	return false;
+}
+
+bool dae::LevelManager::HasLadderPiece(int x, int y) const
+{
+	if (levelObjects.contains({x, y}))
+	{
+		return levelObjects.at({x, y}) == LevelObject::ladder;
+	}
+	return false;
 }

@@ -17,13 +17,19 @@ dae::GameObject::~GameObject()
 
 void dae::GameObject::Update(float deltaTime)
 {
-	for (const auto comp : m_Components)
+	for (const auto& comp : m_Components)
 	{
 		comp->Update(deltaTime);
 	}
 
+	// Pass update to children
+	for (const auto& child : m_Children)
+	{
+		child->Update(deltaTime);
+	}
+
 	// Cleanup components marked for deletion
-	for (const auto comp : m_Components)
+	for (const auto& comp : m_Components)
 	{
 		if (comp->GetGravestone())
 		{
@@ -31,15 +37,9 @@ void dae::GameObject::Update(float deltaTime)
 		}
 	}
 	auto _it = std::ranges::remove_if(m_Components, [&](auto comp)
-	{
-		return comp->GetGravestone();
-	});
-
-	// Pass update to children
-	for (const auto& child : m_Children)
-	{
-		child->Update(deltaTime);
-	}
+		{
+			return comp->GetGravestone();
+		});
 }
 
 void dae::GameObject::Render(float dt) const
@@ -77,6 +77,10 @@ std::shared_ptr<dae::GameObject> dae::GameObject::GetChildAt(int index) const
 
 void dae::GameObject::RemoveChild(int index)
 {
+	auto child = m_Children.begin() + index;
+	// TODO Remove the while tree of this child?
+	// Child can cleanup it's own stuff inside
+
 	// TODO Do this with gravestone
 	m_Children.erase(m_Children.begin() + index);
 }

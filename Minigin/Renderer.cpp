@@ -25,10 +25,60 @@ int GetOpenGLDriverIndex()
 
 void dae::Renderer::Init(SDL_Window* window)
 {
-	m_Window   = window;
-	m_Renderer = SDL_CreateRenderer(window, GetOpenGLDriverIndex(),
-	                                SDL_RENDERER_ACCELERATED |
-	                                SDL_RENDERER_PRESENTVSYNC);
+	m_Window = window;
+
+	// Select render driver
+	// - A render driver that supports HW acceleration is used when available
+	// - Otherwise a render driver supporting software fallback is selected
+	SDL_RendererInfo renderDriverInfo;
+	uint32_t         rendererFlags   = SDL_RENDERER_PRESENTVSYNC;
+	int32_t          nbRenderDrivers = SDL_GetNumRenderDrivers();
+
+	// Render driver debug info
+	// for (int i = 0; i < nbRenderDrivers; i++)
+	// {
+	// 	if (SDL_GetRenderDriverInfo(index, &renderDriverInfo) == 0)
+	// 	{
+	// 		std::cout << "RenderDriverInfo" << std::endl;
+	// 		std::cout << "  Name: " << renderDriverInfo.name << std::endl;
+	// 		std::cout << "  Max Texture Height: " << renderDriverInfo.max_texture_height << std::endl;
+	// 		std::cout << "  Max Texture Width: " << renderDriverInfo.max_texture_width << std::endl;
+	// 		std::cout << "  Amount of available texture formats: " << renderDriverInfo.num_texture_formats << std::endl;
+	// 	}
+	// }
+
+	int renderDriverIndex = GetOpenGLDriverIndex();
+	SDL_GetRenderDriverInfo(GetOpenGLDriverIndex(), &renderDriverInfo);
+
+	if ((renderDriverInfo.flags & rendererFlags) == rendererFlags
+		&& (renderDriverInfo.flags & SDL_RENDERER_ACCELERATED) == SDL_RENDERER_ACCELERATED)
+	{
+		// Using render driver with HW acceleration
+		rendererFlags |= SDL_RENDERER_ACCELERATED;
+		SDL_SetHint(SDL_HINT_RENDER_DRIVER, renderDriverInfo.name);
+		std::cout << "Using Hardware accelerated renderer" << std::endl;
+	}
+	else
+	{
+		// Let SDL use the first render driver supporting software fallback
+		std::cout << "Could not fine hardware accelerated renderer" << std::endl;
+		std::cout << "Using (fallback) software renderer" << std::endl;
+		for (int i = 0; i < nbRenderDrivers; i++)
+		{
+			SDL_GetRenderDriverInfo(i, &renderDriverInfo);
+			if ((renderDriverInfo.flags & SDL_RENDERER_SOFTWARE) != 0)
+			{
+				renderDriverIndex = i;
+				break;
+			}
+		}
+		rendererFlags |= SDL_RENDERER_SOFTWARE;
+	}
+
+	std::cout << "Using renderer: " << renderDriverInfo.name << std::endl;
+	m_Renderer = SDL_CreateRenderer(window, renderDriverIndex, rendererFlags);
+
+
 	if (m_Renderer == nullptr)
 	{
 		throw std::runtime_error(std::string("SDL_CreateRenderer Error: ") + SDL_GetError());
