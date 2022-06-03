@@ -23,11 +23,15 @@ namespace dae
 	{
 	public:
 		GridComponent() = default;
-		explicit GridComponent(std::shared_ptr<GameObject> go, 
-			int gridBaseX, int gridBaseY);
+		explicit GridComponent(
+			std::shared_ptr<GameObject> go);
 
 		void Update(float) override;
 		void Render(float) override;
+
+		std::pair<int, int> GetGridPos();
+		bool                GetXFullyAligned() const;
+		bool                GetYFullyAligned() const;
 
 		// bool IsNeighbourInDirectionOf(GridDirection direction, GridComponent of);
 
@@ -37,14 +41,18 @@ namespace dae
 		GridComponent& operator=(const GridComponent& other) = delete;
 		GridComponent& operator=(GridComponent&& other)      = delete;
 
-	private:
+
 		// The base point of the grid. The grid positions are calculated relative to this.
-		int m_GridBaseX;
-		int m_GridBaseY;
+		inline static int GridBaseX = 20;
+		inline static int GridBaseY = 90;
 
 		// Pixel size of one grid cell
-		int m_GridCellSizeX = 30;
-		int m_GridCellSizeY = 40;
+		inline static int GridCellSizeX = 30;
+		inline static int GridCellSizeY = 40;
+
+	private:
+		bool isXFullyAligned = false;
+		bool isYFullyAligned = false;
 
 		// The current grid position. Represented in columns and rows to differentiate between pixel coordinates.
 		int m_GridR;

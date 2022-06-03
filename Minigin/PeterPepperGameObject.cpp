@@ -5,13 +5,15 @@
 #include "EventQueue.h"
 #include "GridComponent.h"
 #include "InputManager.h"
+#include "MoveComponent.h"
 #include "PlayerStatsComponent.h"
 
 
 dae::PeterPepperGameObject::PeterPepperGameObject() : m_GameObject(std::make_shared<GameObject>())
 {
-	m_GameObject->AddComponent(new LocationComponent(m_GameObject, 190, 450));
-	m_GameObject->AddComponent(new GridComponent(m_GameObject, 20, 100));
+	m_GameObject->AddComponent(new LocationComponent(m_GameObject, 200, 450));
+	m_GameObject->AddComponent(new GridComponent(m_GameObject));
+	m_GameObject->AddComponent(new MoveComponent(m_GameObject));
 	m_GameObject->AddComponent(new PlayerStatsComponent(m_GameObject, 5));
 	m_GameObject->AddComponent(new SpriteMapTextureComponent(
 		m_GameObject, "sprites/Arcade - Burger Time - Characters & Objects - Opaque.png",

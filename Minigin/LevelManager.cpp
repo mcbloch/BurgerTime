@@ -6,6 +6,7 @@
 #include <string>
 
 #include "GameObject.h"
+#include "GridComponent.h"
 #include "ResourceManager.h"
 #include "Scene.h"
 #include "SceneManager.h"
@@ -28,7 +29,7 @@ int dae::LevelManager::LoadPreviousLevel()
 	return currentLevel;
 }
 
-void dae::LevelManager::CreateLevelObject(const LevelObject levelObject, const int x, const int y)
+void dae::LevelManager::CreateLevelObject(const LevelObject levelObject, const int col, const int row)
 {
 	const auto scene = SceneManager::GetInstance().GetCurrentScene();
 
@@ -47,6 +48,8 @@ void dae::LevelManager::CreateLevelObject(const LevelObject levelObject, const i
 	default: ;
 	}
 
+	// std::cout << "Loading level object '" << text << "' at location " << col << ", " << row << std::endl;
+
 	// const auto go = std::make_shared<GameObject>();
 	// go->AddComponent(new TextComponent(
 	// 	go,
@@ -54,7 +57,8 @@ void dae::LevelManager::CreateLevelObject(const LevelObject levelObject, const i
 	// 	ResourceManager::GetInstance().LoadFont("Lingua.otf", 10)));
 	// go->AddComponent(new LocationComponent(go, float(x), float(y)));
 	// scene->Add(go);
-	levelObjects.emplace(std::make_pair(x, y), levelObject);
+
+	levelObjects.emplace(std::make_pair(col, row), levelObject);
 }
 
 void dae::LevelManager::LoadLevel(const int levelIndex)
@@ -84,15 +88,22 @@ void dae::LevelManager::LoadLevel(const int levelIndex)
 
 			for (int col = 0; col < line.size(); col++)
 			{
-				const int x = 10 + (col * gridSize);
-				const int y = 10 + (row * gridSize);
+				LevelObject obj;
 				switch (line[col])
 				{
-				case '-': CreateLevelObject(LevelObject::platform, x, y);
-				case '=': CreateLevelObject(LevelObject::burger, x, y);
-				case '|': CreateLevelObject(LevelObject::ladder, x, y);
-				default: ;
+				case '_': obj = LevelObject::platform;
+					break;
+				case '=': obj = LevelObject::burger;
+					break;
+				case '|': obj = LevelObject::ladder;
+					break;
+				case ' ': continue;
+				default:
+					throw std::runtime_error(
+						std::string("Got an unexpected error while parsing the level file: ") + line[col]);
 				}
+
+				CreateLevelObject(obj, col, row);
 			}
 
 			row += 1;
@@ -104,17 +115,20 @@ void dae::LevelManager::LoadLevel(const int levelIndex)
 	}
 }
 
-bool dae::LevelManager::HasFloorPiece(int x, int y) const
+bool dae::LevelManager::HasWalkablePiece(std::pair<int, int> gridPos) const
 {
+	auto [x, y] = gridPos;
 	if (levelObjects.contains({x, y}))
 	{
-		return levelObjects.at({x, y}) == LevelObject::platform;
+		auto& obj = levelObjects.at({x, y});
+		return obj == LevelObject::platform || obj == LevelObject::ladder;
 	}
 	return false;
 }
 
-bool dae::LevelManager::HasLadderPiece(int x, int y) const
+bool dae::LevelManager::HasLadderPiece(std::pair<int, int> gridPos) const
 {
+	auto [x, y] = gridPos;
 	if (levelObjects.contains({x, y}))
 	{
 		return levelObjects.at({x, y}) == LevelObject::ladder;

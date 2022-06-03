@@ -4,10 +4,8 @@
 #include "GameObject.h"
 
 dae::GridComponent::GridComponent(
-	const std::shared_ptr<GameObject> go,
-	const int                         gridBaseX,
-	const int                         gridBaseY) :
-	Component(go), m_GridBaseX(gridBaseX), m_GridBaseY(gridBaseY)
+	const std::shared_ptr<GameObject> go) :
+	Component(go)
 {
 }
 
@@ -15,8 +13,14 @@ void dae::GridComponent::Update(float)
 {
 	auto& pos = GetEntity()->GetComponent<LocationComponent>()->GetTransform().GetPosition();
 
-	const int newGridCol = (int(pos.x) - m_GridBaseX) / m_GridCellSizeX;
-	const int newGridRow = (int(pos.y) - m_GridBaseY) / m_GridCellSizeY;
+	const int basePosX = (int(pos.x) - GridBaseX);
+	const int basePosY = (int(pos.y) - GridBaseY);
+
+	const int newGridCol = basePosX / GridCellSizeX;
+	const int newGridRow = basePosY / GridCellSizeY;
+
+	isXFullyAligned = (basePosX % GridCellSizeX) == 0;
+	isYFullyAligned = (basePosY % GridCellSizeY) == 0;
 
 	if (newGridCol != m_GridC)
 	{
@@ -35,4 +39,19 @@ void dae::GridComponent::Update(float)
 
 void dae::GridComponent::Render(float)
 {
+}
+
+std::pair<int, int> dae::GridComponent::GetGridPos()
+{
+	return std::make_pair(m_GridC, m_GridR);
+}
+
+bool dae::GridComponent::GetXFullyAligned() const
+{
+	return isXFullyAligned;
+}
+
+bool dae::GridComponent::GetYFullyAligned() const
+{
+	return isYFullyAligned;
 }

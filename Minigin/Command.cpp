@@ -1,10 +1,9 @@
 #include "MiniginPCH.h"
 #include "Command.h"
 
-#include <iostream>
-
 #include "AudioEventQueue.h"
 #include "LevelManager.h"
+#include "MoveComponent.h"
 
 Command::Command(std::shared_ptr<dae::GameObject> actor)
 	: mActor(actor)
@@ -17,34 +16,24 @@ void MusicPauseCommand::Execute()
 }
 
 
-constexpr int speed = 10;
-
 void MoveUpCommand::Execute()
 {
-	const auto locComp = mActor->GetComponent<dae::LocationComponent>();
-	const auto pos = locComp->GetTransform().GetPosition();
-	locComp->SetPosition(pos.x, pos.y - speed);
+	mActor->GetComponent<dae::MoveComponent>()->Move(dae::Direction::Up);
 }
 
 void MoveRightCommand::Execute()
 {
-	const auto locComp = mActor->GetComponent<dae::LocationComponent>();
-	const auto pos = locComp->GetTransform().GetPosition();
-	locComp->SetPosition(pos.x + speed, pos.y);
+	mActor->GetComponent<dae::MoveComponent>()->Move(dae::Direction::Right);
 }
 
 void MoveLeftCommand::Execute()
 {
-	const auto locComp = mActor->GetComponent<dae::LocationComponent>();
-	const auto pos = locComp->GetTransform().GetPosition();
-	locComp->SetPosition(pos.x - speed, pos.y);
+	mActor->GetComponent<dae::MoveComponent>()->Move(dae::Direction::Left);
 }
 
 void MoveDownCommand::Execute()
 {
-	const auto locComp = mActor->GetComponent<dae::LocationComponent>();
-	const auto pos = locComp->GetTransform().GetPosition();
-	locComp->SetPosition(pos.x, pos.y + speed);
+	mActor->GetComponent<dae::MoveComponent>()->Move(dae::Direction::Down);
 }
 
 void NextLevelCommand::Execute()

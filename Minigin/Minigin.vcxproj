@@ -256,6 +256,7 @@
     <ClInclude Include="LoggedAudio.h" />
     <ClInclude Include="Minigin.h" />
     <ClInclude Include="MiniginPCH.h" />
+    <ClInclude Include="MoveComponent.h" />
     <ClInclude Include="NullAudio.h" />
     <ClInclude Include="PeterPepperGameObject.h" />
     <ClInclude Include="PlayerStatsComponent.h" />
@@ -350,6 +351,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MiniginPCH.h</PrecompiledHeaderFile>
     </ClCompile>
+    <ClCompile Include="MoveComponent.cpp" />
     <ClCompile Include="PeterPepperGameObject.cpp" />
     <ClCompile Include="PlayerStatsComponent.cpp" />
     <ClCompile Include="Renderer.cpp" />
