@@ -3,9 +3,9 @@
 
 dae::LocationComponent::LocationComponent(
 	const std::shared_ptr<GameObject> go,
-	const float                       x, const float y) : Component(go)
+	const glm::vec2 pos) : Component(go)
 {
-	SetPosition(x, y);
+	SetPosition(pos);
 }
 
 void dae::LocationComponent::Update(float)
@@ -17,7 +17,7 @@ void dae::LocationComponent::Render(float)
 	return void();
 }
 
-void dae::LocationComponent::SetPosition(const float x, const float y)
+void dae::LocationComponent::SetPosition(const glm::vec2 pos)
 {
-	m_Transform.SetPosition(x, y, 0.0f);
+	m_Transform.SetPosition(pos);
 }

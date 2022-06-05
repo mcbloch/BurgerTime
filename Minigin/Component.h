@@ -2,6 +2,8 @@
 
 namespace dae
 {
+#define m_assert(expr, msg) assert(( (void)(msg), (expr) ))
+
 	class GameObject;
 
 	class Component

@@ -11,14 +11,14 @@
 
 dae::HUD::HUD(): m_GameObject(std::make_shared<GameObject>())
 {
-	m_GameObject->AddComponent(new LocationComponent(m_GameObject, 800, 60));
+	m_GameObject->AddComponent(new LocationComponent(m_GameObject, {800, 60}));
 	m_GameObject->AddComponent(new TextComponent(
 		m_GameObject, "Lives: ",
 		ResourceManager::GetInstance().LoadFont("Lingua.otf", 24)));
 
 
 	const auto points = std::make_shared<GameObject>();
-	points->AddComponent(new LocationComponent(points, 800, 80));
+	points->AddComponent(new LocationComponent(points, {800, 80}));
 	points->AddComponent(new TextComponent(points, "Points: ",
 	                                       ResourceManager::GetInstance().LoadFont("Lingua.otf", 24)));
 	const auto eventHandlerComp = std::make_shared<EventHandlerComponent>(points, BurgerDrop, &UpdatePoints);

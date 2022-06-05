@@ -14,7 +14,7 @@
 std::shared_ptr<dae::GameObject> dae::PeterPepperFactory::CreateGameObjectPeterPepper(Scene& scene)
 {
 	const auto go = std::make_shared<GameObject>();
-	go->AddComponent(new LocationComponent(go, 200, 450));
+	go->AddComponent(new LocationComponent(go, { 200, 450 }));
 	go->AddComponent(new GridComponent(go));
 	go->AddComponent(new MoveComponent(go));
 	go->AddComponent(new PlayerComponent(go, 5));

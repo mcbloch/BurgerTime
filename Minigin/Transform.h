@@ -4,9 +4,9 @@ namespace dae
 	class Transform final
 	{
 	public:
-		[[nodiscard]] const glm::vec3& GetPosition() const { return m_Position; }
-		void                           SetPosition(float x, float y, float z);
+		[[nodiscard]] const glm::vec2& GetPosition() const { return m_Position; }
+		void                           SetPosition(glm::vec2 pos);
 	private:
-		glm::vec3 m_Position{};
+		glm::vec2 m_Position{};
 	};
 }

@@ -46,8 +46,8 @@
     <Filter Include="Header Files\AI\Graphs\Algorithms">
       <UniqueIdentifier>{0374b16c-0a0a-4273-b829-8a5a3098b1ed}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Math">
-      <UniqueIdentifier>{5f6d3333-d15f-4585-9b04-10f68707a870}</UniqueIdentifier>
+    <Filter Include="Header Files\AI\Graphs\Navigation">
+      <UniqueIdentifier>{d4f73331-2323-45b0-b2e4-179c1fa18e55}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -195,18 +195,6 @@
     <ClInclude Include="GraphNode.h">
       <Filter>Header Files\AI\Graphs</Filter>
     </ClInclude>
-    <ClInclude Include="GridGraph.h">
-      <Filter>Header Files\AI\Graphs</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector2.h">
-      <Filter>Header Files\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="Math.h">
-      <Filter>Header Files\Math</Filter>
-    </ClInclude>
-    <ClInclude Include="MathUtilities.h">
-      <Filter>Header Files\Math</Filter>
-    </ClInclude>
     <ClInclude Include="BFS.h">
       <Filter>Header Files\AI\Graphs\Algorithms</Filter>
     </ClInclude>
@@ -221,6 +209,15 @@
     </ClInclude>
     <ClInclude Include="AIComponent.h">
       <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="AStar.h">
+      <Filter>Header Files\AI\Graphs\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="Navigation.h">
+      <Filter>Header Files\AI\Graphs\Navigation</Filter>
+    </ClInclude>
+    <ClInclude Include="HeuristicFunctions.h">
+      <Filter>Header Files\AI\Graphs\Navigation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

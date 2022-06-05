@@ -1,9 +1,7 @@
 #include "MiniginPCH.h"
 #include "Transform.h"
 
-void dae::Transform::SetPosition(const float x, const float y, const float z)
+void dae::Transform::SetPosition(const glm::vec2 pos)
 {
-	m_Position.x = x;
-	m_Position.y = y;
-	m_Position.z = z;
+	m_Position = pos;
 }

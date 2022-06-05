@@ -14,7 +14,7 @@ namespace dae
 	class MoveComponent : public Component
 	{
 	public:
-		MoveComponent(std::shared_ptr<GameObject> go);
+		MoveComponent(std::shared_ptr<GameObject> go, int speed = 10);
 
 		void Update(float) override;
 		void Render(float) override;
@@ -29,6 +29,6 @@ namespace dae
 		MoveComponent& operator=(MoveComponent&& other)      = delete;
 
 	private:
-		const int m_Speed = 10;
+		const int m_Speed;
 	};
 }

@@ -26,7 +26,7 @@ namespace dae
 	class Message
 	{
 	public:
-		Message(const MessageType id, const MessageData data) : m_Id(id), m_Data(std::move(data))
+		Message(const MessageType id, const MessageData data) : m_Id(id), m_Data(data)
 		{
 		}
 

@@ -84,7 +84,7 @@ void dae::Minigin::LoadGame()
 		go,
 		"Programming 4 Assignment",
 		ResourceManager::GetInstance().LoadFont("Lingua.otf", 36)));
-	go->AddComponent(new LocationComponent(go, 80, 40));
+	go->AddComponent(new LocationComponent(go, {80, 40}));
 	scene.Add(go);
 
 	// Example that children work
@@ -97,20 +97,20 @@ void dae::Minigin::LoadGame()
 
 	fpsCounter->AddComponent(fpsComponent);
 	fpsCounter->AddComponent(textComponent);
-	fpsCounter->AddComponent(new LocationComponent(go, 0, 0));
+	fpsCounter->AddComponent(new LocationComponent(go, {0, 0}));
 	scene.Add(fpsCounter);
 
 	highscores = std::make_shared<Highscores>();
 	highscores->FetchHighscores(); // TODO do this in a loop?
 
-	// TODO This has to be a factory, no separate object.
-	const auto peterPepper = PeterPepperFactory::CreateGameObjectPeterPepper(scene);
-
-	AIFactory::CreateGameObjectMrHotDog(scene);
-
 	auto& levelManager = LevelManager::GetInstance();
 	levelManager.LoadNextLevel();
+
+	// TODO This has to be a factory, no separate object.
+	const auto peterPepper = PeterPepperFactory::CreateGameObjectPeterPepper(scene);
 	levelManager.RegisterPlayer(peterPepper);
+
+	AIFactory::CreateGameObjectMrHotDog(scene);
 }
 
 void dae::Minigin::Cleanup()

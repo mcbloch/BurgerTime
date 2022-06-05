@@ -6,7 +6,7 @@
 #include "LevelManager.h"
 #include "LocationComponent.h"
 
-dae::MoveComponent::MoveComponent(std::shared_ptr<GameObject> go): Component(go)
+dae::MoveComponent::MoveComponent(std::shared_ptr<GameObject> go, int speed): Component(go), m_Speed(speed)
 {
 }
 
@@ -20,7 +20,7 @@ void dae::MoveComponent::Render(float)
 
 void dae::MoveComponent::Move(const Direction direction) const
 {
-	std::pair<int, int> dirVector;
+	glm::vec2 dirVector;
 
 	switch (direction)
 	{
@@ -39,42 +39,39 @@ void dae::MoveComponent::Move(const Direction direction) const
 	const auto grid     = GetEntity()->GetComponent<GridComponent>();
 	const auto pos      = location->GetTransform().GetPosition();
 
-	const auto newX = pos.x + (dirVector.first * m_Speed);
-	const auto newY = pos.y + (dirVector.second * m_Speed);
+	const auto newPos = pos + (dirVector * float(m_Speed));
 
 	// Check if movement is allowed. We return early in these conditionals if the move input is invalid
 	if (direction == Direction::Up || direction == Direction::Down)
 	{
 		// We can not move onto a ladder when we are not fully aligned to a vertical grid square
-		if (!grid->GetXFullyAligned()) return;
+		if (!grid->GetFullyAligned().x) return;
 
-		if (grid->GetYFullyAligned())
+		if (grid->GetFullyAligned().y)
 		{
-			auto gridPos      = grid->GetGridPos();
-			int  checkOffsetY = 0;
+			int checkOffsetY = 0;
 			if (direction == Direction::Down)
 				checkOffsetY = -1;
 
-			if (!LevelManager::GetInstance().HasLadderPiece({gridPos.first, gridPos.second - checkOffsetY}))
+			if (!LevelManager::GetInstance().HasLadderPiece(grid->GetGridPos() - glm::ivec2{0, checkOffsetY}))
 				return;
 		}
 	}
 	else
 	{
 		// We can not move while hanging in the air or midway a ladder
-		if (!grid->GetYFullyAligned()) return;
+		if (!grid->GetFullyAligned().y) return;
 
 		// We don't need to check for a floor is we are not aligned as we are already on 2 pieces then.
 		// IMPORTANT: This assumes that our movement never skips over an alignment fase.
-		if (grid->GetXFullyAligned())
+		if (grid->GetFullyAligned().x)
 		{
-			auto       gridPos    = grid->GetGridPos();
-			const bool floorFound = LevelManager::GetInstance().HasWalkablePiece({
-				gridPos.first + dirVector.first, gridPos.second
-			});
+			const bool floorFound = LevelManager::GetInstance().HasWalkablePiece(
+				grid->GetGridPos() + glm::ivec2{dirVector.x, 0}
+			);
 			if (!floorFound) return;
 		}
 	}
 
-	location->SetPosition(newX, newY);
+	location->SetPosition(newPos);
 }

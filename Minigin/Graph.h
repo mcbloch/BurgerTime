@@ -2,13 +2,10 @@
 
 #include "Graph.h"
 #include "GraphConnection.h"
-#include "GraphNode.h"
 
 #include <memory>
 #include <list>
 #include <vector>
-
-#include <iomanip>
 
 namespace dae
 {
@@ -27,10 +24,10 @@ namespace dae
 		~Graph();
 		virtual std::shared_ptr<Graph<T_NodeType, T_ConnectionType>> Clone() const;
 
-		virtual Vector2 GetNodePos(T_NodeType* pNode) const { return pNode->GetPosition(); }
+		virtual glm::vec2 GetNodePos(T_NodeType* pNode) const { return pNode->GetPosition(); }
 
-		virtual int       GetNodeIdxAtWorldPos(const Vector2& pos) const;
-		T_ConnectionType* GetConnectionAtPosition(const Vector2& pos) const;
+		virtual int       GetNodeIdxAtWorldPos(const glm::vec2& pos) const;
+		T_ConnectionType* GetConnectionAtPosition(const glm::vec2& pos) const;
 
 		void SetConnectionCostsToDistance();
 
@@ -74,14 +71,14 @@ namespace dae
 		void Clear();
 		void RemoveConnections();
 
-		[[nodiscard]] Vector2 GetNodePos(const int idx) const { return GetNodePos(GetNode(idx)); }
+		[[nodiscard]] glm::vec2 GetNodePos(const int idx) const { return GetNodePos(GetNode(idx)); }
 
 		// Provide the opportunity for derived classes to differentiate the conceptual position from the world position
 		// Example: A grid position might consist of rows and columns, while the world position is expressed as a (x,y) coordinate
-		[[nodiscard]] virtual Vector2 GetNodeWorldPos(const int idx) const { return GetNodePos(idx); }
-		Vector2 GetNodeWorldPos(T_NodeType* pNode) const { return GetNodeWorldPos(pNode->GetIndex()); }
+		[[nodiscard]] virtual glm::vec2 GetNodeWorldPos(const int idx) const { return GetNodePos(idx); }
+		glm::vec2 GetNodeWorldPos(T_NodeType* pNode) const { return GetNodeWorldPos(pNode->GetIndex()); }
 
-		T_NodeType* GetNodeAtWorldPos(const Vector2& pos) const
+		T_NodeType* GetNodeAtWorldPos(const glm::vec2& pos) const
 		{
 			return IsNodeValid(GetNodeIdxAtWorldPos(pos)) ? GetNode(GetNodeIdxAtWorldPos(pos)) : nullptr;
 		}
@@ -505,15 +502,14 @@ namespace dae
 	}
 
 	template <class T_NodeType, class T_ConnectionType>
-	int Graph<T_NodeType, T_ConnectionType>::GetNodeIdxAtWorldPos(const Vector2& pos) const
+	int Graph<T_NodeType, T_ConnectionType>::GetNodeIdxAtWorldPos(const glm::vec2& pos) const
 	{
-		float posErrorMargin = 1.5f;
-		auto foundIt = find_if(this->m_Nodes.begin(), this->m_Nodes.end(),
-		                       [pos, posErrorMargin, this](T_NodeType* pNode)
-		                       {
-			                       return (pNode->GetPosition() - pos).MagnitudeSquared() < pow(
-				                       posErrorMargin, 2);
-		                       });
+		auto foundIt =
+			find_if(this->m_Nodes.begin(), this->m_Nodes.end(),
+			        [pos, this](T_NodeType* pNode)
+			        {
+				        return pNode->GetPosition() == pos;
+			        });
 
 		if (foundIt != this->m_Nodes.end())
 			return (*foundIt)->GetIndex();
@@ -536,7 +532,7 @@ namespace dae
 	}
 
 	template <class T_NodeType, class T_ConnectionType>
-	T_ConnectionType* Graph<T_NodeType, T_ConnectionType>::GetConnectionAtPosition(const Vector2& pos) const
+	T_ConnectionType* Graph<T_NodeType, T_ConnectionType>::GetConnectionAtPosition(const glm::vec2& pos) const
 	{
 		T_ConnectionType* result = nullptr;
 		for (auto connectionList : this->m_Connections)

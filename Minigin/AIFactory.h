@@ -14,10 +14,10 @@ namespace dae
 		static void CreateGameObjectMrHotDog(Scene& scene)
 		{
 			auto go = std::make_shared<GameObject>();
-			go->AddComponent(new LocationComponent(go, 260, 450));
+			go->AddComponent(new LocationComponent(go, {260, 450}));
 			go->AddComponent(new GridComponent(go));
-			go->AddComponent(new MoveComponent(go));
-			// go->AddComponent(new AIComponent(go));
+			go->AddComponent(new MoveComponent(go, 1));
+			go->AddComponent(new AIComponent(go));
 
 			go->AddComponent(new SpriteMapTextureComponent(
 				go, "sprites/Arcade - Burger Time - Characters & Objects - Opaque.png",
@@ -25,8 +25,9 @@ namespace dae
 
 			scene.Add(go);
 		}
+
 	private:
 		// Static class that can not be instantiated
-		AIFactory(){}
+		AIFactory() = default;
 	};
 }

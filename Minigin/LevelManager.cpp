@@ -2,12 +2,10 @@
 #include "LevelManager.h"
 
 #include <fstream>
-#include <sstream>
 #include <string>
 
 #include "GameObject.h"
 #include "GridComponent.h"
-#include "GridGraph.h"
 #include "ResourceManager.h"
 #include "Scene.h"
 #include "SceneManager.h"
@@ -75,13 +73,14 @@ void dae::LevelManager::CreateLevelObject(const LevelObject levelObject, const i
 			7 * 16, 48 + (burgerYIndex * 8), 32, 8, 2.5f));
 		go->AddComponent(new LocationComponent(
 			go,
-			float(GridComponent::GridBaseX + col * GridComponent::GridCellSizeX + 8),
-			float(GridComponent::GridBaseY + row * GridComponent::GridCellSizeY + 28)
+			glm::vec2(GridComponent::GridBase) +
+			glm::vec2{col, row} * glm::vec2(GridComponent::GridCellSize) +
+			glm::vec2{8, 28}
 		));
 		scene->Add(go);
 	}
 
-	m_LevelObjects.emplace(std::make_pair(col, row), levelObject);
+	m_LevelObjects.insert(std::make_pair(glm::ivec2{col, row}, levelObject));
 }
 
 void dae::LevelManager::LoadLevel(const int levelIndex)
@@ -93,7 +92,7 @@ void dae::LevelManager::LoadLevel(const int levelIndex)
 		((currentLevel % 3) * (208 + 8)),
 		((currentLevel / 3) * ((200 + 8) * 2)),
 		208, 200, 2.5f));
-	go->AddComponent(new LocationComponent(go, float(20), float(100)));
+	go->AddComponent(new LocationComponent(go, {20, 100}));
 	scene->Add(go);
 
 	int maxRow = 0;
@@ -149,7 +148,7 @@ void dae::LevelManager::LoadLevel(const int levelIndex)
 		throw std::runtime_error("Could not open level file: " + levels[levelIndex]);
 	}
 
-	auto directionOffsets = std::vector<std::pair<float, float>>{{0.f, -1.f}, {-1.f, 0.f}};
+	const auto directionOffsets = std::vector<glm::ivec2>{{0, -1}, {-1, 0}};
 
 	for (int col = 0; col <= maxCol; col++)
 	{
@@ -157,21 +156,19 @@ void dae::LevelManager::LoadLevel(const int levelIndex)
 		{
 			if (!m_LevelObjects.contains({col, row})) continue;
 
-			const auto currNode = new GraphNode(m_LevelGraph.GetNextFreeNodeIndex(), Vector2(float(col), float(row)));
+			const auto currNode = new GraphNode(m_LevelGraph.GetNextFreeNodeIndex(), glm::vec2{float(col), float(row)});
 			m_LevelGraph.AddNode(currNode);
 			std::cout << "Node: " << (*currNode).GetPosition() << std::endl;
 
-			for (const auto [offsetX, offsetY] : directionOffsets)
+			for (const auto offset : directionOffsets)
 			{
-				const float newCol = float(col) + offsetX;
-				const float newRow = float(row) + offsetY;
-				if (newCol < 0.f || newRow < 0.f)
+				const glm::ivec2 newPos = glm::ivec2{col, row} + offset;
+				if (newPos.x < 0 || newPos.y < 0)
 					continue;
 
-				if (m_LevelObjects.contains({int(newCol), int(newRow)}))
+				if (m_LevelObjects.contains(newPos))
 				{
-					const auto otherNodeIdx = m_LevelGraph.GetNodeIdxAtWorldPos(
-						Vector2(newCol, newRow));
+					const auto otherNodeIdx = m_LevelGraph.GetNodeIdxAtWorldPos(newPos);
 					if (otherNodeIdx != invalid_node_index)
 					{
 						const auto newConn = new GraphConnection(currNode->GetIndex(), otherNodeIdx);
@@ -188,24 +185,24 @@ void dae::LevelManager::LoadLevel(const int levelIndex)
 	}
 }
 
-bool dae::LevelManager::HasWalkablePiece(std::pair<int, int> gridPos) const
+bool dae::LevelManager::HasWalkablePiece(const glm::ivec2 gridPos) const
 {
-	auto [x, y] = gridPos;
-	if (m_LevelObjects.contains({x, y}))
+	if (m_LevelObjects.contains(gridPos))
 	{
+		// All pieces specified in our map file are walkable at the moment
 		return true;
+
 		// auto& obj = m_LevelObjects.at({x, y});
 		// return obj == LevelObject::Platform || obj == LevelObject::Ladder;
 	}
 	return false;
 }
 
-bool dae::LevelManager::HasLadderPiece(std::pair<int, int> gridPos) const
+bool dae::LevelManager::HasLadderPiece(const glm::ivec2 gridPos) const
 {
-	auto [x, y] = gridPos;
-	if (m_LevelObjects.contains({x, y}))
+	if (m_LevelObjects.contains(gridPos))
 	{
-		return m_LevelObjects.at({x, y}) == LevelObject::Ladder;
+		return m_LevelObjects.at(gridPos) == LevelObject::Ladder;
 	}
 	return false;
 }

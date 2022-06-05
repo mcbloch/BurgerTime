@@ -28,9 +28,8 @@ namespace dae
 		void Update(float) override;
 		void Render(float) override;
 
-		std::pair<int, int> GetGridPos();
-		bool                GetXFullyAligned() const;
-		bool                GetYFullyAligned() const;
+		[[nodiscard]] glm::ivec2 GetGridPos() const;
+		[[nodiscard]] glm::bvec2 GetFullyAligned() const;
 
 		// bool IsNeighbourInDirectionOf(GridDirection direction, GridComponent of);
 
@@ -42,19 +41,15 @@ namespace dae
 
 
 		// The base point of the grid. The grid positions are calculated relative to this.
-		inline static int GridBaseX = 20;
-		inline static int GridBaseY = 90;
+		inline static glm::ivec2 GridBase = {20, 90};
 
 		// Pixel size of one grid cell
-		inline static int GridCellSizeX = 30;
-		inline static int GridCellSizeY = 40;
+		inline static glm::ivec2 GridCellSize = {30, 40};
 
 	private:
-		bool isXFullyAligned = false;
-		bool isYFullyAligned = false;
+		glm::bvec2 isFullyAligned{false, false};
 
 		// The current grid position. Represented in columns and rows to differentiate between pixel coordinates.
-		int m_GridR = -1;
-		int m_GridC = -1;
+		glm::ivec2 m_GridPos = {-1, -1};
 	};
 }

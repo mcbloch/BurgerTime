@@ -1,11 +1,8 @@
 #include "MiniginPCH.h"
 #include "Highscores.h"
 
-#include <cstdlib>
-
-#include <stdio.h>
-#include <iostream>
 #include <fstream>
+#include <stdio.h>
 
 #include "GameObject.h"
 #include "GraphicsComponent.h"
@@ -41,7 +38,7 @@ dae::Highscores::Highscores()
 {
 	const auto& scene = SceneManager::GetInstance().GetCurrentScene();
 	highscoreObject   = std::make_shared<GameObject>();
-	highscoreObject->AddComponent(new LocationComponent(highscoreObject, 800, 150));
+	highscoreObject->AddComponent(new LocationComponent(highscoreObject, {800, 150}));
 	highscoreObject->AddComponent(new TextComponent(
 		highscoreObject,
 		"Highscores \n────────── \nLoading... ",

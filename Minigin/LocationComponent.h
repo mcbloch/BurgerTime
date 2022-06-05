@@ -10,13 +10,13 @@ namespace dae
 	{
 	public:
 		LocationComponent() = default;
-		LocationComponent(std::shared_ptr<GameObject> go, float x, float y);
+		LocationComponent(std::shared_ptr<GameObject> go, glm::vec2 pos);
 
 		void Update(float) override;
 		void Render(float) override;
 
 		[[nodiscard]] Transform GetTransform() const { return m_Transform; }
-		void                    SetPosition(float x, float y);
+		void                    SetPosition(glm::vec2 pos);
 
 		~LocationComponent() override                                = default;
 		LocationComponent(const LocationComponent& other)            = delete;

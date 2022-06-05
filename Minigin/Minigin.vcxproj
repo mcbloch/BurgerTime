@@ -233,6 +233,7 @@
     <ClInclude Include="..\3rdParty\imgui-1.86\imstb_truetype.h" />
     <ClInclude Include="..\3rdParty\imgui-plot\include\imgui_plot.h" />
     <ClInclude Include="AIComponent.h" />
+    <ClInclude Include="AStar.h" />
     <ClInclude Include="Audio.h" />
     <ClInclude Include="AudioEventQueue.h" />
     <ClInclude Include="CacheExercise.h" />
@@ -244,7 +245,6 @@
     <ClInclude Include="GraphConnection.h" />
     <ClInclude Include="GraphEnums.h" />
     <ClInclude Include="GraphNode.h" />
-    <ClInclude Include="GridGraph.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="EventHandlerComponent.h" />
@@ -255,6 +255,7 @@
     <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="GridComponent.h" />
     <ClInclude Include="AIFactory.h" />
+    <ClInclude Include="HeuristicFunctions.h" />
     <ClInclude Include="Highscores.h" />
     <ClInclude Include="HUD.h" />
     <ClInclude Include="IngredientComponent.h" />
@@ -263,11 +264,10 @@
     <ClInclude Include="LocationComponent.h" />
     <ClInclude Include="Locator.h" />
     <ClInclude Include="LoggedAudio.h" />
-    <ClInclude Include="Math.h" />
-    <ClInclude Include="MathUtilities.h" />
     <ClInclude Include="Minigin.h" />
     <ClInclude Include="MiniginPCH.h" />
     <ClInclude Include="MoveComponent.h" />
+    <ClInclude Include="Navigation.h" />
     <ClInclude Include="NullAudio.h" />
     <ClInclude Include="PeterPepperFactory.h" />
     <ClInclude Include="PlayerComponent.h" />
@@ -279,7 +279,6 @@
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="Transform.h" />
-    <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdParty\imgui-1.86\backends\imgui_impl_opengl2.cpp">
