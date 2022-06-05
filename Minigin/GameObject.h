@@ -1,8 +1,6 @@
 #pragma once
 
 #include "Component.h"
-#include "LocationComponent.h"
-#include "GraphicsComponent.h"
 
 namespace dae
 {

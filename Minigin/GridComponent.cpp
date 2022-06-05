@@ -1,5 +1,6 @@
 #include "MiniginPCH.h"
 #include "GridComponent.h"
+#include "LocationComponent.h"
 
 #include "GameObject.h"
 

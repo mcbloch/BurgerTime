@@ -5,7 +5,7 @@ namespace dae
 {
 	enum Events
 	{
-		Die,
+		PlayerDie,
 		BurgerDrop,
 		EnemyDie
 	};

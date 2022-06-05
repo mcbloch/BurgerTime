@@ -15,11 +15,13 @@
 #include "LevelManager.h"
 #include "Locator.h"
 #include "LoggedAudio.h"
-#include "PeterPepperGameObject.h"
 #include "Scene.h"
 #include "SDLMixAudio.h"
 
 #include <functional>
+
+#include "AIFactory.h"
+#include "PeterPepperFactory.h"
 using namespace std::placeholders;
 
 using namespace std;
@@ -98,16 +100,17 @@ void dae::Minigin::LoadGame()
 	fpsCounter->AddComponent(new LocationComponent(go, 0, 0));
 	scene.Add(fpsCounter);
 
-	LevelManager::GetInstance().LoadNextLevel();
-
 	highscores = std::make_shared<Highscores>();
 	highscores->FetchHighscores(); // TODO do this in a loop?
 
-	peterPepper = std::make_shared<PeterPepperGameObject>();
-	scene.Add(peterPepper->GetGameObject());
-	peterPepper->InitHandlers();
+	// TODO This has to be a factory, no separate object.
+	const auto peterPepper = PeterPepperFactory::CreateGameObjectPeterPepper(scene);
 
-	peterPepper->Die();
+	AIFactory::CreateGameObjectMrHotDog(scene);
+
+	auto& levelManager = LevelManager::GetInstance();
+	levelManager.LoadNextLevel();
+	levelManager.RegisterPlayer(peterPepper);
 }
 
 void dae::Minigin::Cleanup()

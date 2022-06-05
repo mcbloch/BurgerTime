@@ -23,8 +23,7 @@ namespace dae
 	{
 	public:
 		GridComponent() = default;
-		explicit GridComponent(
-			std::shared_ptr<GameObject> go);
+		explicit GridComponent(std::shared_ptr<GameObject> go);
 
 		void Update(float) override;
 		void Render(float) override;
@@ -55,7 +54,7 @@ namespace dae
 		bool isYFullyAligned = false;
 
 		// The current grid position. Represented in columns and rows to differentiate between pixel coordinates.
-		int m_GridR;
-		int m_GridC;
+		int m_GridR = -1;
+		int m_GridC = -1;
 	};
 }

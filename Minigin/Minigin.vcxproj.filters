@@ -19,9 +19,6 @@
     <Filter Include="imgui-plot">
       <UniqueIdentifier>{7ffe9941-33ab-4fde-9ddc-c45fc27e29d0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\GameObjects">
-      <UniqueIdentifier>{fee3ccf1-289f-4b0e-9e8c-4d7d0cf561c6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\GameObjects">
       <UniqueIdentifier>{6077de93-4425-49a1-93d7-1e8d3a7296e2}</UniqueIdentifier>
     </Filter>
@@ -39,6 +36,18 @@
     </Filter>
     <Filter Include="Header Files\Input">
       <UniqueIdentifier>{01715356-9c6e-4b68-8579-1f9e196692b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AI">
+      <UniqueIdentifier>{9e23651a-552c-4154-97ae-9d094e717374}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AI\Graphs">
+      <UniqueIdentifier>{8d22c0d5-859f-41b3-bcf5-27e486e53d32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AI\Graphs\Algorithms">
+      <UniqueIdentifier>{0374b16c-0a0a-4273-b829-8a5a3098b1ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Math">
+      <UniqueIdentifier>{5f6d3333-d15f-4585-9b04-10f68707a870}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -96,7 +105,7 @@
     <ClInclude Include="..\3rdParty\imgui-plot\include\imgui_plot.h">
       <Filter>imgui-plot</Filter>
     </ClInclude>
-    <ClInclude Include="PeterPepperGameObject.h">
+    <ClInclude Include="PeterPepperFactory.h">
       <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="GraphicsComponent.h">
@@ -129,7 +138,7 @@
     <ClInclude Include="HUD.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PlayerStatsComponent.h">
+    <ClInclude Include="PlayerComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="EventHandlerComponent.h">
@@ -168,17 +177,50 @@
     <ClInclude Include="Highscores.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FPSComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MoveComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GridComponent.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="AIFactory.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Graph.h">
+      <Filter>Header Files\AI\Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphConnection.h">
+      <Filter>Header Files\AI\Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphEnums.h">
+      <Filter>Header Files\AI\Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphNode.h">
+      <Filter>Header Files\AI\Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="GridGraph.h">
+      <Filter>Header Files\AI\Graphs</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="MathUtilities.h">
+      <Filter>Header Files\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="BFS.h">
+      <Filter>Header Files\AI\Graphs\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="MoveComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
     <ClInclude Include="IngredientComponent.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="FPSComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="AIComponent.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -251,9 +293,6 @@
     <ClCompile Include="LocationComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PeterPepperGameObject.cpp">
-      <Filter>Source Files\GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="EventQueue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -266,7 +305,7 @@
     <ClCompile Include="HUD.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PlayerStatsComponent.cpp">
+    <ClCompile Include="PlayerComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EventHandlerComponent.cpp">
@@ -294,6 +333,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IngredientComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GraphConnection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AIComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PeterPepperFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -4,7 +4,9 @@
 #include "EventHandlerComponent.h"
 #include "EventQueue.h"
 #include "GameObject.h"
-#include "PlayerStatsComponent.h"
+#include "GraphicsComponent.h"
+#include "LocationComponent.h"
+#include "PlayerComponent.h"
 #include "ResourceManager.h"
 
 dae::HUD::HUD(): m_GameObject(std::make_shared<GameObject>())
@@ -28,8 +30,8 @@ void dae::HUD::InitHandlers()
 {
 	// Example on how to listen for events
 	const auto self    = shared_from_this();
-	auto       handler = std::static_pointer_cast<EventHandler>(self);
-	EventQueue::GetInstance().AttachEvent(Die, handler);
+	const auto handler = std::static_pointer_cast<EventHandler>(self);
+	EventQueue::GetInstance().AttachEvent(PlayerDie, handler);
 	EventQueue::GetInstance().AttachEvent(BurgerDrop, handler);
 	EventQueue::GetInstance().AttachEvent(EnemyDie, handler);
 }
@@ -40,10 +42,10 @@ void dae::HUD::HandleEvent(const Event* pEvent)
 	auto self = shared_from_this();
 	switch (pEvent->GetID())
 	{
-	case Die:
+	case PlayerDie:
 		{
 			std::cout << "Ohno, he dieded" << std::endl;
-			const auto statsComp    = pEvent->GetOrigin()->GetComponent<PlayerStatsComponent>();
+			const auto statsComp    = pEvent->GetOrigin()->GetComponent<PlayerComponent>();
 			const auto livesLeft    = statsComp->GetRemainingLives();
 			const auto initialLives = statsComp->GetInitialLives();
 			m_GameObject->GetComponent<TextComponent>()->SetText(
@@ -57,7 +59,7 @@ void dae::HUD::HandleEvent(const Event* pEvent)
 
 void dae::HUD::UpdatePoints(std::shared_ptr<GameObject> originalObject, const Event* pEvent)
 {
-	const auto statsComp = pEvent->GetOrigin()->GetComponent<PlayerStatsComponent>();
+	const auto statsComp = pEvent->GetOrigin()->GetComponent<PlayerComponent>();
 	const auto points    = statsComp->GetPoints();
 
 	originalObject->GetComponent<TextComponent>()->SetText(

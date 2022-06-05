@@ -232,12 +232,19 @@
     <ClInclude Include="..\3rdParty\imgui-1.86\imstb_textedit.h" />
     <ClInclude Include="..\3rdParty\imgui-1.86\imstb_truetype.h" />
     <ClInclude Include="..\3rdParty\imgui-plot\include\imgui_plot.h" />
+    <ClInclude Include="AIComponent.h" />
     <ClInclude Include="Audio.h" />
     <ClInclude Include="AudioEventQueue.h" />
     <ClInclude Include="CacheExercise.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ConcurrentQueue.h" />
+    <ClInclude Include="BFS.h" />
+    <ClInclude Include="Graph.h" />
+    <ClInclude Include="GraphConnection.h" />
+    <ClInclude Include="GraphEnums.h" />
+    <ClInclude Include="GraphNode.h" />
+    <ClInclude Include="GridGraph.h" />
     <ClInclude Include="Event.h" />
     <ClInclude Include="EventHandler.h" />
     <ClInclude Include="EventHandlerComponent.h" />
@@ -247,6 +254,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GraphicsComponent.h" />
     <ClInclude Include="GridComponent.h" />
+    <ClInclude Include="AIFactory.h" />
     <ClInclude Include="Highscores.h" />
     <ClInclude Include="HUD.h" />
     <ClInclude Include="IngredientComponent.h" />
@@ -255,12 +263,14 @@
     <ClInclude Include="LocationComponent.h" />
     <ClInclude Include="Locator.h" />
     <ClInclude Include="LoggedAudio.h" />
+    <ClInclude Include="Math.h" />
+    <ClInclude Include="MathUtilities.h" />
     <ClInclude Include="Minigin.h" />
     <ClInclude Include="MiniginPCH.h" />
     <ClInclude Include="MoveComponent.h" />
     <ClInclude Include="NullAudio.h" />
-    <ClInclude Include="PeterPepperGameObject.h" />
-    <ClInclude Include="PlayerStatsComponent.h" />
+    <ClInclude Include="PeterPepperFactory.h" />
+    <ClInclude Include="PlayerComponent.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
@@ -269,6 +279,7 @@
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Texture2D.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="Vector2.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\3rdParty\imgui-1.86\backends\imgui_impl_opengl2.cpp">
@@ -327,8 +338,10 @@
       <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</TreatWarningAsError>
       <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</TreatWarningAsError>
     </ClCompile>
+    <ClCompile Include="AIComponent.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="GraphConnection.cpp" />
     <ClCompile Include="Event.cpp" />
     <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="EventHandlerComponent.cpp" />
@@ -354,8 +367,8 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">MiniginPCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="MoveComponent.cpp" />
-    <ClCompile Include="PeterPepperGameObject.cpp" />
-    <ClCompile Include="PlayerStatsComponent.cpp" />
+    <ClCompile Include="PeterPepperFactory.cpp" />
+    <ClCompile Include="PlayerComponent.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="Scene.cpp" />

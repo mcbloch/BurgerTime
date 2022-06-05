@@ -7,6 +7,7 @@
 
 #include "GameObject.h"
 #include "GridComponent.h"
+#include "GridGraph.h"
 #include "ResourceManager.h"
 #include "Scene.h"
 #include "SceneManager.h"
@@ -29,31 +30,24 @@ int dae::LevelManager::LoadPreviousLevel()
 	return currentLevel;
 }
 
+void dae::LevelManager::RegisterPlayer(const std::shared_ptr<GameObject> p)
+{
+	m_PlayerObjects.push_back(p);
+}
+
+void dae::LevelManager::ClearPlayers()
+{
+	m_PlayerObjects.clear();
+}
+
+dae::GameObjects& dae::LevelManager::GetPlayers()
+{
+	return m_PlayerObjects;
+}
+
 void dae::LevelManager::CreateLevelObject(const LevelObject levelObject, const int col, const int row)
 {
 	const auto scene = SceneManager::GetInstance().GetCurrentScene();
-
-	// std::string text;
-	// switch (levelObject)
-	// {
-	// case LevelObject::Platform:
-	// 	text = "platform";
-	// 	break;
-	// case LevelObject::Ladder:
-	// 	text = "ladder";
-	// 	break;
-	// default: ;
-	// }
-
-	// std::cout << "Loading level object '" << text << "' at location " << col << ", " << row << std::endl;
-
-	// const auto go = std::make_shared<GameObject>();
-	// go->AddComponent(new TextComponent(
-	// 	go,
-	// 	text,
-	// 	ResourceManager::GetInstance().LoadFont("Lingua.otf", 10)));
-	// go->AddComponent(new LocationComponent(go, float(x), float(y)));
-	// scene->Add(go);
 
 	int burgerYIndex = -1;
 	switch (levelObject)
@@ -87,7 +81,7 @@ void dae::LevelManager::CreateLevelObject(const LevelObject levelObject, const i
 		scene->Add(go);
 	}
 
-	levelObjects.emplace(std::make_pair(col, row), levelObject);
+	m_LevelObjects.emplace(std::make_pair(col, row), levelObject);
 }
 
 void dae::LevelManager::LoadLevel(const int levelIndex)
@@ -101,6 +95,9 @@ void dae::LevelManager::LoadLevel(const int levelIndex)
 		208, 200, 2.5f));
 	go->AddComponent(new LocationComponent(go, float(20), float(100)));
 	scene->Add(go);
+
+	int maxRow = 0;
+	int maxCol = 0;
 
 	std::ifstream infile(m_LevelDataPath + levels[levelIndex]);
 	if (infile.is_open())
@@ -139,8 +136,11 @@ void dae::LevelManager::LoadLevel(const int levelIndex)
 				}
 
 				CreateLevelObject(obj, col, row);
+
+				if (col > maxCol) maxCol = col;
 			}
 
+			if (row > maxRow) maxRow = row;
 			row += 1;
 		}
 	}
@@ -148,15 +148,53 @@ void dae::LevelManager::LoadLevel(const int levelIndex)
 	{
 		throw std::runtime_error("Could not open level file: " + levels[levelIndex]);
 	}
+
+	auto directionOffsets = std::vector<std::pair<float, float>>{{0.f, -1.f}, {-1.f, 0.f}};
+
+	for (int col = 0; col <= maxCol; col++)
+	{
+		for (int row = 0; row <= maxRow; row++)
+		{
+			if (!m_LevelObjects.contains({col, row})) continue;
+
+			const auto currNode = new GraphNode(m_LevelGraph.GetNextFreeNodeIndex(), Vector2(float(col), float(row)));
+			m_LevelGraph.AddNode(currNode);
+			std::cout << "Node: " << (*currNode).GetPosition() << std::endl;
+
+			for (const auto [offsetX, offsetY] : directionOffsets)
+			{
+				const float newCol = float(col) + offsetX;
+				const float newRow = float(row) + offsetY;
+				if (newCol < 0.f || newRow < 0.f)
+					continue;
+
+				if (m_LevelObjects.contains({int(newCol), int(newRow)}))
+				{
+					const auto otherNodeIdx = m_LevelGraph.GetNodeIdxAtWorldPos(
+						Vector2(newCol, newRow));
+					if (otherNodeIdx != invalid_node_index)
+					{
+						const auto newConn = new GraphConnection(currNode->GetIndex(), otherNodeIdx);
+						// std::cout << "Conn: " << (*newConn).GetFrom() << "-" << (*newConn).GetTo() << std::endl;
+						m_LevelGraph.AddConnection(newConn);
+					}
+					else
+					{
+						throw(new std::runtime_error("Could not retrieve node from graph but it should be there..."));
+					}
+				}
+			}
+		}
+	}
 }
 
 bool dae::LevelManager::HasWalkablePiece(std::pair<int, int> gridPos) const
 {
 	auto [x, y] = gridPos;
-	if (levelObjects.contains({x, y}))
+	if (m_LevelObjects.contains({x, y}))
 	{
 		return true;
-		// auto& obj = levelObjects.at({x, y});
+		// auto& obj = m_LevelObjects.at({x, y});
 		// return obj == LevelObject::Platform || obj == LevelObject::Ladder;
 	}
 	return false;
@@ -165,9 +203,14 @@ bool dae::LevelManager::HasWalkablePiece(std::pair<int, int> gridPos) const
 bool dae::LevelManager::HasLadderPiece(std::pair<int, int> gridPos) const
 {
 	auto [x, y] = gridPos;
-	if (levelObjects.contains({x, y}))
+	if (m_LevelObjects.contains({x, y}))
 	{
-		return levelObjects.at({x, y}) == LevelObject::Ladder;
+		return m_LevelObjects.at({x, y}) == LevelObject::Ladder;
 	}
 	return false;
+}
+
+dae::Graph<dae::GraphNode, dae::GraphConnection>& dae::LevelManager::GetLevelGraph()
+{
+	return m_LevelGraph;
 }
