@@ -17,7 +17,7 @@ std::shared_ptr<dae::GameObject> dae::PeterPepperFactory::CreateGameObjectPeterP
 	go->AddComponent(new LocationComponent(go, { 200, 450 }));
 	go->AddComponent(new GridComponent(go));
 	go->AddComponent(new MoveComponent(go));
-	go->AddComponent(new PlayerComponent(go, 5));
+	go->AddComponent(new PlayerComponent(go, 3));
 	go->AddComponent(new SpriteMapTextureComponent(
 		go, "sprites/Arcade - Burger Time - Characters & Objects - Opaque.png",
 		0, 0, 16, 16, 2.5f));

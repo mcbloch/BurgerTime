@@ -112,7 +112,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>MiniginPCH.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -139,7 +139,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>MiniginPCH.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <BrowseInformation>true</BrowseInformation>
     </ClCompile>
     <Link>
@@ -172,7 +172,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>MiniginPCH.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -203,7 +203,7 @@
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeaderFile>MiniginPCH.h</PrecompiledHeaderFile>
       <TreatWarningAsError>true</TreatWarningAsError>
-      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -257,7 +257,7 @@
     <ClInclude Include="AIFactory.h" />
     <ClInclude Include="HeuristicFunctions.h" />
     <ClInclude Include="Highscores.h" />
-    <ClInclude Include="HUD.h" />
+    <ClInclude Include="HUDFactory.h" />
     <ClInclude Include="IngredientComponent.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="LevelManager.h" />
@@ -342,7 +342,6 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="GraphConnection.cpp" />
     <ClCompile Include="Event.cpp" />
-    <ClCompile Include="EventHandler.cpp" />
     <ClCompile Include="EventHandlerComponent.cpp" />
     <ClCompile Include="EventQueue.cpp" />
     <ClCompile Include="Font.cpp" />
@@ -351,7 +350,7 @@
     <ClCompile Include="GraphicsComponent.cpp" />
     <ClCompile Include="GridComponent.cpp" />
     <ClCompile Include="Highscores.cpp" />
-    <ClCompile Include="HUD.cpp" />
+    <ClCompile Include="HUDFactory.cpp" />
     <ClCompile Include="IngredientComponent.cpp" />
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="LevelManager.cpp" />

@@ -1,13 +1,15 @@
 #include "MiniginPCH.h"
 #include "EventQueue.h"
 
+#include "EventHandlerComponent.h"
+
 void dae::EventQueue::SendEvent(const int eventId, const std::shared_ptr<GameObject> go)
 {
 	// Events are owned by the event queue
 	queue.push(new Event(eventId, go));
 }
 
-void dae::EventQueue::AttachEvent(const int eventId, const std::shared_ptr<EventHandler> handler)
+void dae::EventQueue::AttachEvent(const int eventId, const std::shared_ptr<GameObject> handler)
 {
 	if (!handlers.contains(eventId))
 	{
@@ -17,7 +19,7 @@ void dae::EventQueue::AttachEvent(const int eventId, const std::shared_ptr<Event
 	handlers.at(eventId).push_back(handler);
 }
 
-void dae::EventQueue::DetachEvent(const int eventId, const std::shared_ptr<EventHandler> handler)
+void dae::EventQueue::DetachEvent(const int eventId, const std::shared_ptr<GameObject> handler)
 {
 	if (handlers.contains(eventId))
 	{
@@ -34,7 +36,7 @@ void dae::EventQueue::ProcessQueue()
 
 		for (const auto& handler : handlers.at(event->GetID()))
 		{
-			handler->HandleEvent(event);
+			handler->GetComponent<EventHandlerComponent>()->HandleEvent(event);
 		}
 
 		delete(event);

@@ -11,7 +11,6 @@
 #include "GameObject.h"
 #include "GraphicsComponent.h"
 #include "Highscores.h"
-#include "HUD.h"
 #include "LevelManager.h"
 #include "Locator.h"
 #include "LoggedAudio.h"
@@ -21,6 +20,7 @@
 #include <functional>
 
 #include "AIFactory.h"
+#include "HUDFactory.h"
 #include "PeterPepperFactory.h"
 using namespace std::placeholders;
 
@@ -75,36 +75,33 @@ void dae::Minigin::LoadGame()
 {
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
 
-	const auto hud = std::make_shared<HUD>();
-	hud->InitHandlers();
-	scene.Add(hud->GetGameObject());
+	auto& levelManager = LevelManager::GetInstance();
+	levelManager.LoadNextLevel();
 
 	auto go = std::make_shared<GameObject>();
 	go->AddComponent(new TextComponent(
 		go,
-		"Programming 4 Assignment",
+		"Burger Time",
 		ResourceManager::GetInstance().LoadFont("Lingua.otf", 36)));
-	go->AddComponent(new LocationComponent(go, {80, 40}));
+	go->AddComponent(new LocationComponent(go, { 80, 40 }));
 	scene.Add(go);
 
-	// Example that children work
-	const auto fpsCounter    = std::make_shared<GameObject>();
-	const auto fpsComponent  = new FPSComponent(go);
+	const auto fpsCounter = std::make_shared<GameObject>();
+	const auto fpsComponent = new FPSComponent(go);
 	const auto textComponent = new TextComponent(go, std::string{},
-	                                             ResourceManager::GetInstance().LoadFont("Lingua.otf", 20));
-	textComponent->SetColor({255, 255, 0});
+		ResourceManager::GetInstance().LoadFont("Lingua.otf", 20));
+	textComponent->SetColor({ 255, 255, 0 });
 	textComponent->SetTextLink(fpsComponent->GetTextLink());
 
 	fpsCounter->AddComponent(fpsComponent);
 	fpsCounter->AddComponent(textComponent);
-	fpsCounter->AddComponent(new LocationComponent(go, {0, 0}));
+	fpsCounter->AddComponent(new LocationComponent(go, { 0, 0 }));
 	scene.Add(fpsCounter);
 
 	highscores = std::make_shared<Highscores>();
 	highscores->FetchHighscores(); // TODO do this in a loop?
+	const auto hud = HUDFactory::CreateGameObjectHUD(scene);
 
-	auto& levelManager = LevelManager::GetInstance();
-	levelManager.LoadNextLevel();
 
 	// TODO This has to be a factory, no separate object.
 	const auto peterPepper = PeterPepperFactory::CreateGameObjectPeterPepper(scene);

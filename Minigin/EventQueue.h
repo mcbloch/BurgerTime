@@ -1,12 +1,10 @@
 #pragma once
-#include <functional>
 
 #include "Singleton.h"
 
 #include <queue>
 
 #include "Event.h"
-#include "EventHandler.h"
 
 namespace dae
 {
@@ -14,15 +12,15 @@ namespace dae
 	{
 	public:
 		void SendEvent(int eventId, std::shared_ptr<GameObject> go);
-		void AttachEvent(int eventId, std::shared_ptr<EventHandler> handler);
-		void DetachEvent(int eventId, std::shared_ptr<EventHandler> handler);
+		void AttachEvent(int eventId, std::shared_ptr<GameObject> handler);
+		void DetachEvent(int eventId, std::shared_ptr<GameObject> handler);
 
 		void ProcessQueue();
 	private:
 		friend class Singleton<EventQueue>;
 		EventQueue() = default;
 
-		std::queue<Event*>                                                  queue{};
-		std::unordered_map<int, std::vector<std::shared_ptr<EventHandler>>> handlers{};
+		std::queue<Event*>                                                queue{};
+		std::unordered_map<int, std::vector<std::shared_ptr<GameObject>>> handlers{};
 	};
 }
