@@ -32,14 +32,20 @@ void dae::MoveComponent::Move(const Direction direction) const
 		break;
 	case Direction::Down: dirVector = {0, 1};
 		break;
-	default: ;
+	default: break;
 	}
 
 	const auto location = GetEntity()->GetComponent<LocationComponent>();
 	const auto grid     = GetEntity()->GetComponent<GridComponent>();
 	const auto pos      = location->GetTransform().GetPosition();
 
-	const auto newPos = pos + (dirVector * float(m_Speed));
+	// Some rounding so we keep it even :)
+	// We should actually just use int vectors but that's a refactor for later.
+	const auto newPosInt = glm::ivec2(pos + (dirVector * float(m_Speed)));
+	const auto newPos    = glm::vec2(newPosInt);
+
+	// std::cout << "New pos: " << newPosInt << std::endl;
+
 
 	// Check if movement is allowed. We return early in these conditionals if the move input is invalid
 	if (direction == Direction::Up || direction == Direction::Down)
@@ -51,10 +57,12 @@ void dae::MoveComponent::Move(const Direction direction) const
 		{
 			int checkOffsetY = 0;
 			if (direction == Direction::Down)
-				checkOffsetY = -1;
+				checkOffsetY = 1;
 
-			if (!LevelManager::GetInstance().HasLadderPiece(grid->GetGridPos() - glm::ivec2{0, checkOffsetY}))
+			if (!LevelManager::GetInstance().HasLadderPiece(grid->GetGridPos() + glm::ivec2{ 0, checkOffsetY }))
 				return;
+			else
+				std::cout << std::endl;
 		}
 	}
 	else
@@ -74,4 +82,5 @@ void dae::MoveComponent::Move(const Direction direction) const
 	}
 
 	location->SetPosition(newPos);
+	grid->UpdateGridPos();
 }

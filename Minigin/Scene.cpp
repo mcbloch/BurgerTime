@@ -23,6 +23,11 @@ void Scene::Update(float deltaTime)
 	{
 		object->Update(deltaTime);
 	}
+
+	std::erase_if(m_Objects, [&](std::shared_ptr<GameObject> obj)
+	{
+		return obj->GetGravestone();
+	});
 }
 
 void Scene::Render(float dt) const

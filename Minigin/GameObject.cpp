@@ -13,6 +13,9 @@ dae::GameObject::~GameObject()
 	{
 		if (comp) { delete(comp); }
 	}
+
+	// This should delete the children as they are shared references.
+	m_Children.clear();
 };
 
 void dae::GameObject::Update(float deltaTime)
@@ -37,9 +40,9 @@ void dae::GameObject::Update(float deltaTime)
 		}
 	}
 	auto _it = std::ranges::remove_if(m_Components, [&](auto comp)
-		{
-			return comp->GetGravestone();
-		});
+	{
+		return comp->GetGravestone();
+	});
 }
 
 void dae::GameObject::Render(float dt) const
@@ -78,10 +81,7 @@ std::shared_ptr<dae::GameObject> dae::GameObject::GetChildAt(int index) const
 void dae::GameObject::RemoveChild(int index)
 {
 	auto child = m_Children.begin() + index;
-	// TODO Remove the while tree of this child?
-	// Child can cleanup it's own stuff inside
 
-	// TODO Do this with gravestone
 	m_Children.erase(m_Children.begin() + index);
 }
 

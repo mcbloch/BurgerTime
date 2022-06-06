@@ -508,7 +508,7 @@ namespace dae
 			find_if(this->m_Nodes.begin(), this->m_Nodes.end(),
 			        [pos, this](T_NodeType* pNode)
 			        {
-				        return pNode->GetPosition() == pos;
+				        return glm::all(glm::equal(pNode->GetPosition(), pos));
 			        });
 
 		if (foundIt != this->m_Nodes.end())

@@ -16,18 +16,7 @@ namespace dae
 		[[nodiscard]] int GetRemainingLives() const { return m_Lives; }
 		[[nodiscard]] int GetPoints() const { return m_Points; }
 
-		// TODO make this actually work
-		bool triggerOnce = true;
-
-		void Update(float) override
-		{
-			if (triggerOnce)
-			{
-				triggerOnce = false;
-				ReduceRemainingLives();
-				EventQueue::GetInstance().SendEvent(PlayerDie, GetEntity());
-			}
-		}
+		void Update(float) override;
 
 		void Render(float) override
 		{

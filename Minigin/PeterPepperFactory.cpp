@@ -14,9 +14,9 @@
 std::shared_ptr<dae::GameObject> dae::PeterPepperFactory::CreateGameObjectPeterPepper(Scene& scene)
 {
 	const auto go = std::make_shared<GameObject>();
-	go->AddComponent(new LocationComponent(go, { 200, 450 }));
+	go->AddComponent(new LocationComponent(go, {200, 450}));
 	go->AddComponent(new GridComponent(go));
-	go->AddComponent(new MoveComponent(go));
+	go->AddComponent(new MoveComponent(go, 2));
 	go->AddComponent(new PlayerComponent(go, 3));
 	go->AddComponent(new SpriteMapTextureComponent(
 		go, "sprites/Arcade - Burger Time - Characters & Objects - Opaque.png",
@@ -34,10 +34,10 @@ std::shared_ptr<dae::GameObject> dae::PeterPepperFactory::CreateGameObjectPeterP
 	input.BindButtonCommand({ControllerButton::DPadDown, ButtonState::Down},
 	                        std::make_unique<MoveDownCommand>(go));
 
-	input.BindKeyCommand({SDL_SCANCODE_LEFT, ButtonState::Down}, std::make_unique<MoveLeftCommand>(go));
-	input.BindKeyCommand({SDL_SCANCODE_RIGHT, ButtonState::Down}, std::make_unique<MoveRightCommand>(go));
-	input.BindKeyCommand({SDL_SCANCODE_UP, ButtonState::Down}, std::make_unique<MoveUpCommand>(go));
-	input.BindKeyCommand({SDL_SCANCODE_DOWN, ButtonState::Down}, std::make_unique<MoveDownCommand>(go));
+	input.BindKeyCommand({SDL_SCANCODE_LEFT, ButtonState::Pressed}, std::make_unique<MoveLeftCommand>(go));
+	input.BindKeyCommand({SDL_SCANCODE_RIGHT, ButtonState::Pressed}, std::make_unique<MoveRightCommand>(go));
+	input.BindKeyCommand({SDL_SCANCODE_UP, ButtonState::Pressed}, std::make_unique<MoveUpCommand>(go));
+	input.BindKeyCommand({SDL_SCANCODE_DOWN, ButtonState::Pressed}, std::make_unique<MoveDownCommand>(go));
 
 	scene.Add(go);
 	return go;

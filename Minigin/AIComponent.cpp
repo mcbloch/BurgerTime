@@ -40,7 +40,11 @@ void dae::AIComponent::Update(float)
 			const auto gridPosPlayer = player->GetComponent<GridComponent>()->GetGridPos();
 			GraphNode* nodePlayer    = g.GetNodeAtWorldPos(gridPosPlayer);
 
+			if (currentEdge)
+				currentEdge->SetCost(10000);
 			auto path = astar.FindPath(nodeAI, nodePlayer);
+			if (currentEdge)
+				currentEdge->SetCost(1);
 
 			if (path.size() > 2)
 			{

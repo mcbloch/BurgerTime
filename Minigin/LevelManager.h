@@ -29,10 +29,15 @@ namespace dae
 		void         ClearPlayers();
 		GameObjects& GetPlayers();
 
+		void         RegisterEnemy(std::shared_ptr<GameObject> e);
+		void         ClearEnemies();
+		GameObjects& GetEnemies();
+
 		[[nodiscard]] bool HasWalkablePiece(glm::ivec2 gridPos) const;
 		[[nodiscard]] bool HasLadderPiece(glm::ivec2 gridPos) const;
 
 		Graph<GraphNode, GraphConnection>& GetLevelGraph();
+		void                               ResetLevel() const;
 
 	private:
 		void CreateLevelObject(LevelObject levelObject, int col, int row);
@@ -50,9 +55,14 @@ namespace dae
 		std::string m_LevelDataPath   = "../Data/levels/";
 		std::string m_LevelSpriteFile = "sprites/Arcade - Burger Time - Stages.png";
 
+		// Owned by the LevelManager
+		std::shared_ptr<GameObject>                 m_LevelGameObject;
 		std::unordered_map<glm::ivec2, LevelObject> m_LevelObjects{};
-		Graph<GraphNode, GraphConnection> m_LevelGraph{false};
-		GameObjects                       m_PlayerObjects{};
+		Graph<GraphNode, GraphConnection>           m_LevelGraph{false};
+
+		// Not owned
+		GameObjects m_PlayerObjects{};
+		GameObjects m_EnemyObjects{};
 
 	private:
 		friend class Singleton<LevelManager>;

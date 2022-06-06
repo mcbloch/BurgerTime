@@ -20,6 +20,7 @@
 #include <functional>
 
 #include "AIFactory.h"
+#include "GridComponent.h"
 #include "HUDFactory.h"
 #include "PeterPepperFactory.h"
 using namespace std::placeholders;
@@ -83,19 +84,19 @@ void dae::Minigin::LoadGame()
 		go,
 		"Burger Time",
 		ResourceManager::GetInstance().LoadFont("Lingua.otf", 36)));
-	go->AddComponent(new LocationComponent(go, { 80, 40 }));
+	go->AddComponent(new LocationComponent(go, {80, 40}));
 	scene.Add(go);
 
-	const auto fpsCounter = std::make_shared<GameObject>();
-	const auto fpsComponent = new FPSComponent(go);
+	const auto fpsCounter    = std::make_shared<GameObject>();
+	const auto fpsComponent  = new FPSComponent(go);
 	const auto textComponent = new TextComponent(go, std::string{},
-		ResourceManager::GetInstance().LoadFont("Lingua.otf", 20));
-	textComponent->SetColor({ 255, 255, 0 });
+	                                             ResourceManager::GetInstance().LoadFont("Lingua.otf", 20));
+	textComponent->SetColor({255, 255, 0});
 	textComponent->SetTextLink(fpsComponent->GetTextLink());
 
 	fpsCounter->AddComponent(fpsComponent);
 	fpsCounter->AddComponent(textComponent);
-	fpsCounter->AddComponent(new LocationComponent(go, { 0, 0 }));
+	fpsCounter->AddComponent(new LocationComponent(go, {0, 0}));
 	scene.Add(fpsCounter);
 
 	highscores = std::make_shared<Highscores>();
@@ -107,7 +108,10 @@ void dae::Minigin::LoadGame()
 	const auto peterPepper = PeterPepperFactory::CreateGameObjectPeterPepper(scene);
 	levelManager.RegisterPlayer(peterPepper);
 
-	AIFactory::CreateGameObjectMrHotDog(scene);
+	const auto hotdog  = AIFactory::CreateGameObjectMrHotDog(scene, {0, 0});
+	const auto hotdog2 = AIFactory::CreateGameObjectMrHotDog(scene, {GridComponent::MaxGridSize.x - 1, 0});
+	levelManager.RegisterEnemy(hotdog);
+	levelManager.RegisterEnemy(hotdog2);
 }
 
 void dae::Minigin::Cleanup()

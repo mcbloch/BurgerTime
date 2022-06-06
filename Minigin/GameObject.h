@@ -37,7 +37,11 @@ namespace dae
 		GameObject& operator=(const GameObject& other) = delete;
 		GameObject& operator=(GameObject&& other)      = delete;
 
+		void               MarkForRemoval() { m_Gravestone = true; }
+		[[nodiscard]] bool GetGravestone() const { return m_Gravestone; }
+
 	private:
+		bool                                     m_Gravestone = false;
 		GameObject*                              m_Parent     = nullptr;
 		std::vector<std::shared_ptr<GameObject>> m_Children   = {};
 		std::vector<Component*>                  m_Components = {};
