@@ -20,7 +20,7 @@ dae::SpriteMapTextureComponent::SpriteMapTextureComponent(
 
 void dae::SpriteMapTextureComponent::Render(float)
 {
-	const auto& pos = GetEntity()->GetComponent<LocationComponent>()->GetTransform().GetPosition();
+	const auto& pos = GetEntity()->GetComponent<LocationComponent>()->GetPosition();
 	Renderer::GetInstance().RenderTexture(
 		*m_Texture, x, y, w, h,
 		pos.x, pos.y, w * scale, h * scale);
@@ -33,7 +33,7 @@ dae::TextureComponent::TextureComponent(std::shared_ptr<GameObject> go, const st
 
 void dae::TextureComponent::Render(float)
 {
-	const auto& pos = GetEntity()->GetComponent<LocationComponent>()->GetTransform().GetPosition();
+	const auto& pos = GetEntity()->GetComponent<LocationComponent>()->GetPosition();
 	Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
 }
 
@@ -88,7 +88,7 @@ void dae::TextComponent::Render(float)
 {
 	if (m_TextTexture != nullptr)
 	{
-		const auto& pos = GetEntity()->GetComponent<LocationComponent>()->GetTransform().GetPosition();
+		const auto& pos = GetEntity()->GetComponent<LocationComponent>()->GetPosition();
 		Renderer::GetInstance().RenderTexture(*m_TextTexture, pos.x, pos.y);
 	}
 }

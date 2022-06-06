@@ -14,7 +14,7 @@ namespace dae
 	private:
 		HUDFactory() = default;
 
-		static void UpdateLives(std::shared_ptr<GameObject> originalObject, const Event* pEvent);
-		static void UpdatePoints(std::shared_ptr<GameObject> originalObject, const Event* pEvent);
+		static void OnBurgerDrop(std::shared_ptr<GameObject> originalObject, const Event* pEvent);
+		static void OnPlayerDie(std::shared_ptr<GameObject> originalObject, const Event* pEvent);
 	};
 }

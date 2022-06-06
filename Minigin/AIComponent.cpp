@@ -40,6 +40,9 @@ void dae::AIComponent::Update(float)
 			const auto gridPosPlayer = player->GetComponent<GridComponent>()->GetGridPos();
 			GraphNode* nodePlayer    = g.GetNodeAtWorldPos(gridPosPlayer);
 
+			if (!nodePlayer)
+				return;
+
 			if (currentEdge)
 				currentEdge->SetCost(10000);
 			auto path = astar.FindPath(nodeAI, nodePlayer);
@@ -64,12 +67,12 @@ void dae::AIComponent::Update(float)
 	// This is not a pretty solution. We actually want to bake floats into our grid but that for later
 	if (useLocationCoords)
 	{
-		const auto pos       = GetEntity()->GetComponent<LocationComponent>()->GetTransform();
-		const auto playerPos = selectedPlayer->GetComponent<LocationComponent>()->GetTransform();
-		from                 = pos.GetPosition();
-		to                   = playerPos.GetPosition();
+		const auto loc       = GetEntity()->GetComponent<LocationComponent>();
+		const auto playerLoc = selectedPlayer->GetComponent<LocationComponent>();
+		from                 = loc->GetPosition();
+		to                   = playerLoc->GetPosition();
 	}
-	else
+	else if (currentEdge)
 	{
 		const auto fromNode = g.GetNode(currentEdge->GetFrom());
 		const auto toNode   = g.GetNode(currentEdge->GetTo());

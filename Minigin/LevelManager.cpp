@@ -29,6 +29,11 @@ int dae::LevelManager::LoadPreviousLevel()
 	return currentLevel;
 }
 
+std::shared_ptr<dae::GameObject> dae::LevelManager::GetLevelGameObject()
+{
+	return m_LevelGameObject;
+}
+
 void dae::LevelManager::RegisterPlayer(const std::shared_ptr<GameObject> p)
 {
 	m_PlayerObjects.push_back(p);
@@ -84,16 +89,17 @@ void dae::LevelManager::CreateLevelObject(const LevelObject levelObject, const i
 	if (burgerYIndex >= 0)
 	{
 		const auto go = std::make_shared<GameObject>();
-		go->AddComponent(new SpriteMapTextureComponent(
+		go->AddComponent(new LocationComponent(go, {}));
+		go->AddComponent(new GridComponent(go, {col, row}));
+		go->AddComponent(new IngredientComponent(go));
+
+		const auto asset = std::make_shared<GameObject>();
+		asset->AddComponent(new LocationComponent(asset, IngredientComponent::IngredientLocationOffset));
+		asset->AddComponent(new SpriteMapTextureComponent(
 			go, "sprites/Arcade - Burger Time - Characters & Objects - Opaque.png",
 			7 * 16, 48 + (burgerYIndex * 8), 32, 8, 2.5f));
-		go->AddComponent(new LocationComponent(
-			go,
-			glm::vec2(GridComponent::GridBase) +
-			glm::vec2{col, row} * glm::vec2(GridComponent::GridCellSize) +
-			glm::vec2(IngredientComponent::IngredientLocationOffset)
-		));
-		go->AddComponent(new IngredientComponent(go));
+		go->AddChild(asset);
+
 		m_LevelGameObject->AddChild(go);
 	}
 
@@ -104,12 +110,17 @@ void dae::LevelManager::LoadLevel(const int levelIndex)
 {
 	const auto scene  = SceneManager::GetInstance().GetCurrentScene();
 	m_LevelGameObject = std::make_shared<GameObject>();
-	m_LevelGameObject->AddComponent(new SpriteMapTextureComponent(
+	m_LevelGameObject->AddComponent(new LocationComponent(m_LevelGameObject, {20, 90}));
+
+	const auto assetObject = std::make_shared<GameObject>();
+	assetObject->AddComponent(new SpriteMapTextureComponent(
 		m_LevelGameObject, m_LevelSpriteFile,
 		((currentLevel % 3) * (208 + 8)),
 		((currentLevel / 3) * ((200 + 8) * 2)),
 		208, 200, 2.5f));
-	m_LevelGameObject->AddComponent(new LocationComponent(m_LevelGameObject, {20, 100}));
+	assetObject->AddComponent(new LocationComponent(m_LevelGameObject, {0, 10}));
+	m_LevelGameObject->AddChild(assetObject);
+
 	scene->Add(m_LevelGameObject);
 
 	int maxRow = 0;

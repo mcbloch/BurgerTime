@@ -37,7 +37,7 @@ void dae::MoveComponent::Move(const Direction direction) const
 
 	const auto location = GetEntity()->GetComponent<LocationComponent>();
 	const auto grid     = GetEntity()->GetComponent<GridComponent>();
-	const auto pos      = location->GetTransform().GetPosition();
+	const auto pos      = location->GetPosition();
 
 	// Some rounding so we keep it even :)
 	// We should actually just use int vectors but that's a refactor for later.

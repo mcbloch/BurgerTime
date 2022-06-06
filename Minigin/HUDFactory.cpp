@@ -22,38 +22,40 @@ std::shared_ptr<dae::GameObject> dae::HUDFactory::CreateGameObjectHUD(Scene& sce
 	points->AddComponent(new LocationComponent(points, {800, 80}));
 	points->AddComponent(new TextComponent(points, "Points: ",
 	                                       ResourceManager::GetInstance().LoadFont("Lingua.otf", 24)));
-	const auto eventHandlerBurgerDrop = new EventHandlerComponent(points, BurgerDrop, &UpdatePoints);
-	points->AddComponent(eventHandlerBurgerDrop);
+	const auto eventHandler = new EventHandlerComponent(points);
+	eventHandler->AddEventListener(BurgerDrop, &OnBurgerDrop);
+	points->AddComponent(eventHandler);
 	go->AddChild(points);
 
 	const auto lives = std::make_shared<GameObject>();
 	lives->AddComponent(new LocationComponent(lives, {800, 40}));
 	// TODO Add a better way to set the initial text
 	lives->AddComponent(new TextComponent(lives, "Lives: 3",
-	                                       ResourceManager::GetInstance().LoadFont("Lingua.otf", 24)));
-	const auto eventHandlerPlayerDie = new EventHandlerComponent(lives, PlayerDie, &UpdateLives);
-	lives->AddComponent(eventHandlerPlayerDie);
+	                                      ResourceManager::GetInstance().LoadFont("Lingua.otf", 24)));
+	const auto eventHandlerPoints = new EventHandlerComponent(lives);
+	eventHandlerPoints->AddEventListener(PlayerDie, &OnPlayerDie);
+	lives->AddComponent(eventHandlerPoints);
 	go->AddChild(lives);
 
 	return go;
 }
 
 
-void dae::HUDFactory::UpdateLives(std::shared_ptr<GameObject> originalObject, const Event* pEvent)
+void dae::HUDFactory::OnPlayerDie(std::shared_ptr<GameObject> originalObject, const Event* pEvent)
 {
 	std::cout << "Ohno, he dieded" << std::endl;
-	const auto statsComp    = pEvent->GetOrigin()->GetComponent<PlayerComponent>();
-	const auto livesLeft    = statsComp->GetRemainingLives();
-	const auto initialLives = statsComp->GetInitialLives();
+	const auto& statsComp    = pEvent->GetOrigin()->GetComponent<PlayerComponent>();
+	const auto  livesLeft    = statsComp->GetRemainingLives();
+	const auto  initialLives = statsComp->GetInitialLives();
 
 	originalObject->GetComponent<TextComponent>()->SetText(
 		"Lives: " + std::to_string(livesLeft) + "/" + std::to_string(initialLives));
 }
 
-void dae::HUDFactory::UpdatePoints(std::shared_ptr<GameObject> originalObject, const Event* pEvent)
+void dae::HUDFactory::OnBurgerDrop(std::shared_ptr<GameObject> originalObject, const Event* pEvent)
 {
-	const auto statsComp = pEvent->GetOrigin()->GetComponent<PlayerComponent>();
-	const auto points    = statsComp->GetPoints() + 50;
+	const auto& statsComp = pEvent->GetOrigin()->GetComponent<PlayerComponent>();
+	const auto  points    = statsComp->GetPoints() + 50;
 	statsComp->ChangePoints(points);
 
 	originalObject->GetComponent<TextComponent>()->SetText(

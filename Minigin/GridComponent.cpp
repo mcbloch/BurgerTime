@@ -12,7 +12,7 @@ dae::GridComponent::GridComponent(
 	m_assert(location != nullptr,
 	         "The GridComponent needs a LocationComponent to work. Verify that you added one before the GridComponent");
 
-	m_GridPosStart = GetGridPosFromLocation(location->GetTransform().GetPosition());
+	m_GridPosStart = GetGridPosFromLocation(location->GetPosition());
 }
 
 dae::GridComponent::GridComponent(std::shared_ptr<GameObject> go, const glm::ivec2 gridPosStart)
@@ -50,7 +50,7 @@ glm::ivec2 dae::GridComponent::GetGridPos() const
 
 void dae::GridComponent::UpdateGridPos()
 {
-	auto& pos = GetEntity()->GetComponent<LocationComponent>()->GetTransform().GetPosition();
+	const auto pos = GetEntity()->GetComponent<LocationComponent>()->GetPosition();
 
 	m_GridPos = GetGridPosFromLocation(pos);
 
@@ -66,10 +66,10 @@ glm::bvec2 dae::GridComponent::GetFullyAligned() const
 
 glm::vec2 dae::GridComponent::GetLocationFromGridPos(const glm::ivec2 gridPos)
 {
-	return (gridPos * GridCellSize) + GridBase;
+	return (gridPos * GridCellSize);
 }
 
 glm::ivec2 dae::GridComponent::GetGridPosFromLocation(const glm::vec2 pos)
 {
-	return (glm::ivec2(pos) - GridBase) / GridCellSize;
+	return (glm::ivec2(pos)) / GridCellSize;
 }

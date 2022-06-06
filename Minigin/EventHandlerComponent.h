@@ -1,9 +1,7 @@
 #pragma once
-#include <functional>
 
 #include "Component.h"
 #include "Event.h"
-#include "EventHandler.h"
 
 namespace dae
 {
@@ -12,17 +10,15 @@ namespace dae
 	{
 	public:
 		EventHandlerComponent(
-			std::shared_ptr<GameObject>,
-			int                        eventID,
-			void (*                    callback)(std::shared_ptr<GameObject>, const Event*));
-		void Init() override;
+			std::shared_ptr<GameObject>);
 		void Update(float) override;
 		void Render(float) override;
 
+		void AddEventListener(int    eventID,
+		                      void (*callback)(std::shared_ptr<GameObject>, const Event*));
 		void HandleEvent(const Event* pEvent) const;
 
 	private:
-		int    m_EventID;
-		void (*m_Callback)(std::shared_ptr<GameObject> go, const Event*);
+		std::unordered_map<int, void (*)(std::shared_ptr<GameObject> go, const Event*)> m_CallbackMap{};
 	};
 }

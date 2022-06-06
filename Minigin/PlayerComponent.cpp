@@ -13,11 +13,11 @@ dae::PlayerComponent::PlayerComponent(const std::shared_ptr<GameObject> go, cons
 void dae::PlayerComponent::Update(float)
 {
 	const auto location = GetEntity()->GetComponent<LocationComponent>();
-	auto       pos      = location->GetTransform().GetPosition();
+	auto       pos      = location->GetPosition();
 	for (const auto& enemy : LevelManager::GetInstance().GetEnemies())
 	{
 		// Detect if we collide with an enemy
-		auto enemyPos = enemy->GetComponent<LocationComponent>()->GetTransform().GetPosition();
+		auto enemyPos = enemy->GetComponent<LocationComponent>()->GetPosition();
 
 		// We will asume the width of peter and the pepper to be half a cell
 		const float w = float(GridComponent::GridCellSize.x);

@@ -4,16 +4,9 @@
 #include "EventQueue.h"
 
 dae::EventHandlerComponent::EventHandlerComponent(
-	std::shared_ptr<GameObject> go, const int eventID,
-	void (*                     callback)(std::shared_ptr<GameObject>, const Event*))
-	: Component(go), m_EventID(eventID), m_Callback(callback)
+	std::shared_ptr<GameObject> go)
+	: Component(go)
 {
-}
-
-void dae::EventHandlerComponent::Init()
-{
-	// Example on how to listen for events
-	EventQueue::GetInstance().AttachEvent(m_EventID, GetEntity());
 }
 
 void dae::EventHandlerComponent::Update(float)
@@ -24,11 +17,18 @@ void dae::EventHandlerComponent::Render(float)
 {
 }
 
+void dae::EventHandlerComponent::AddEventListener(int    eventID,
+                                                  void (*callback)(std::shared_ptr<GameObject>, const Event*))
+{
+	m_CallbackMap.insert({eventID, callback});
+	EventQueue::GetInstance().AttachEvent(eventID, GetEntity());
+}
+
 
 void dae::EventHandlerComponent::HandleEvent([[maybe_unused]] const Event* pEvent) const
 {
-	if (pEvent->GetID() == m_EventID)
+	if (m_CallbackMap.contains(pEvent->GetID()))
 	{
-		m_Callback(GetEntity(), pEvent);
+		m_CallbackMap.at(pEvent->GetID())(GetEntity(), pEvent);
 	}
 }

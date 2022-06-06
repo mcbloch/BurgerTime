@@ -34,7 +34,7 @@ void dae::TextObject::Render() const
 {
 	if (m_TextTexture != nullptr)
 	{
-		const auto& pos = m_Transform.GetPosition();
+		const auto& pos = m_Position;
 		Renderer::GetInstance().RenderTexture(*m_TextTexture, pos.x, pos.y);
 	}
 }

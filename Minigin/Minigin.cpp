@@ -78,6 +78,7 @@ void dae::Minigin::LoadGame()
 
 	auto& levelManager = LevelManager::GetInstance();
 	levelManager.LoadNextLevel();
+	auto levelObj = levelManager.GetLevelGameObject();
 
 	auto go = std::make_shared<GameObject>();
 	go->AddComponent(new TextComponent(
@@ -105,11 +106,11 @@ void dae::Minigin::LoadGame()
 
 
 	// TODO This has to be a factory, no separate object.
-	const auto peterPepper = PeterPepperFactory::CreateGameObjectPeterPepper(scene);
+	const auto peterPepper = PeterPepperFactory::CreateGameObjectPeterPepper(levelObj);
 	levelManager.RegisterPlayer(peterPepper);
 
-	const auto hotdog  = AIFactory::CreateGameObjectMrHotDog(scene, {0, 0});
-	const auto hotdog2 = AIFactory::CreateGameObjectMrHotDog(scene, {GridComponent::MaxGridSize.x - 1, 0});
+	const auto hotdog  = AIFactory::CreateGameObjectMrHotDog(levelObj, {0, 0});
+	const auto hotdog2 = AIFactory::CreateGameObjectMrHotDog(levelObj, {GridComponent::MaxGridSize.x - 1, 0});
 	levelManager.RegisterEnemy(hotdog);
 	levelManager.RegisterEnemy(hotdog2);
 }

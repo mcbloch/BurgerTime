@@ -11,7 +11,7 @@ namespace dae
 		public EventHandler
 	{
 	public:
-		static std::shared_ptr<GameObject> CreateGameObjectPeterPepper(Scene& scene);
+		static std::shared_ptr<GameObject> CreateGameObjectPeterPepper(std::shared_ptr<GameObject>& level);
 		static void                        InitHandlers();
 
 		void Die();

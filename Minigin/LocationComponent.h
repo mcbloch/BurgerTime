@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Component.h"
-#include "Transform.h"
+#include "GameObject.h"
 
 namespace dae
 {
@@ -15,8 +15,16 @@ namespace dae
 		void Update(float) override;
 		void Render(float) override;
 
-		[[nodiscard]] Transform GetTransform() const { return m_Transform; }
-		void                    SetPosition(glm::vec2 pos);
+		[[nodiscard]] glm::vec2 GetPosition() const
+		{
+			if (GetEntity()->GetParent())
+			{
+				return m_Position + GetEntity()->GetParent()->GetComponent<LocationComponent>()->GetPosition();
+			}
+			return m_Position;
+		}
+
+		void SetPosition(glm::vec2 pos);
 
 		~LocationComponent() override                                = default;
 		LocationComponent(const LocationComponent& other)            = delete;
@@ -25,6 +33,6 @@ namespace dae
 		LocationComponent& operator=(LocationComponent&& other)      = delete;
 
 	private:
-		Transform m_Transform;
+		glm::vec2 m_Position;
 	};
 }

@@ -19,5 +19,5 @@ void dae::LocationComponent::Render(float)
 
 void dae::LocationComponent::SetPosition(const glm::vec2 pos)
 {
-	m_Transform.SetPosition(pos);
+	m_Position = pos;
 }

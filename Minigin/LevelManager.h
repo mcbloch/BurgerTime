@@ -25,6 +25,8 @@ namespace dae
 		int LoadNextLevel();
 		int LoadPreviousLevel();
 
+		std::shared_ptr<GameObject> GetLevelGameObject();
+
 		void         RegisterPlayer(std::shared_ptr<GameObject> p);
 		void         ClearPlayers();
 		GameObjects& GetPlayers();

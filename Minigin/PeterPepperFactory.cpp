@@ -11,7 +11,7 @@
 #include "MoveComponent.h"
 #include "PlayerComponent.h"
 
-std::shared_ptr<dae::GameObject> dae::PeterPepperFactory::CreateGameObjectPeterPepper(Scene& scene)
+std::shared_ptr<dae::GameObject> dae::PeterPepperFactory::CreateGameObjectPeterPepper(std::shared_ptr<GameObject>& parent)
 {
 	const auto go = std::make_shared<GameObject>();
 	go->AddComponent(new LocationComponent(go, {200, 450}));
@@ -39,7 +39,7 @@ std::shared_ptr<dae::GameObject> dae::PeterPepperFactory::CreateGameObjectPeterP
 	input.BindKeyCommand({SDL_SCANCODE_UP, ButtonState::Pressed}, std::make_unique<MoveUpCommand>(go));
 	input.BindKeyCommand({SDL_SCANCODE_DOWN, ButtonState::Pressed}, std::make_unique<MoveDownCommand>(go));
 
-	scene.Add(go);
+	parent->AddChild(go);
 	return go;
 }
 
